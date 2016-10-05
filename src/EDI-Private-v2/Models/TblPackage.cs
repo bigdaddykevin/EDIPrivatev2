@@ -62,7 +62,7 @@ namespace EDIPrivate.Models
         public double PercentCollectedElectronically { get; set; }
 
         [Column("Total Burden Hours")]
-        public int? TotalBurdenHours { get; set; }
+        public int? BurdenHoursTotal { get; set; }
 
         [Column("Burden Hours Change")]
         public int? BurdenHoursChange { get; set; }

@@ -76,14 +76,14 @@ namespace EDIPrivate.Models
         public string SubcollectorsNames { get; set; }
 
         [Column("VC Language A10")]
-        public string VcLanguageA10 { get; set; }
+        public string VCLanguageA10 { get; set; }
 
         [Column("Confidentiality Language")]
         public string ConfidentialityLanguage { get; set; }
 
         [Column("Relevant Conf Law")]
         [MaxLength(255)]
-        public string RelevantConfLaw { get; set; }
+        public string RelevantConfidentialityLaw { get; set; }
 
         [Column("Survey FAQ")]
         public bool? SurveyFaq { get; set; }

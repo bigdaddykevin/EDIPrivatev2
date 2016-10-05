@@ -192,7 +192,7 @@ namespace EDIPrivate.Models
         public bool? SchoolInstitutionData { get; set; }
 
         [Column("LEA Data")]
-        public bool? LeaData { get; set; }
+        public bool? LEAData { get; set; }
 
         [Column("State Data")]
         public bool? StateData { get; set; }

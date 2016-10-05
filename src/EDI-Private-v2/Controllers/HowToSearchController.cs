@@ -2,9 +2,11 @@
 
 namespace EDIPrivate.Controllers
 {
-    public sealed class HomeController : Controller
+    [Route("[controller]")]
+    public sealed class HowToSearchController : Controller
     {
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index() =>
             View();
     }

@@ -92,7 +92,7 @@ namespace EDIPrivate.Models
 
                 entity.Property(e => e.SchoolInstitutionData).HasDefaultValueSql("0");
 
-                entity.Property(e => e.LeaData).HasDefaultValueSql("0");
+                entity.Property(e => e.LEAData).HasDefaultValueSql("0");
 
                 entity.Property(e => e.StateData).HasDefaultValueSql("0");
 

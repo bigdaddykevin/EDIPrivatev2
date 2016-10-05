@@ -125,32 +125,32 @@ namespace EDIPrivate.Models
         public bool? ConsentNotApplicable { get; set; }
 
         [Column("FIC Language")]
-        public string FicLanguage { get; set; }
+        public string FICLanguage { get; set; }
 
         [Column("FIC Language Locations")]
-        public string FicLanguageLocations { get; set; }
+        public string FICLanguageLocations { get; set; }
 
         [Column("VC Language IC")]
-        public string VcLanguageIc { get; set; }
+        public string VCLanguageIC { get; set; }
 
         [Column("VC Language Letters")]
-        public string VcLanguageLetters { get; set; }
+        public string VCLanguageLetters { get; set; }
 
         [Column("VC Language FAQ")]
-        public string VcLanguageFaq { get; set; }
+        public string VCLanguageFaq { get; set; }
 
         [Column("VC Language Brochure")]
-        public string VcLanguageBrochure { get; set; }
+        public string VCLanguageBrochure { get; set; }
 
         [Column("Confidentiality Law Cited")]
         [MaxLength(255)]
         public string ConfidentialityLawCited { get; set; }
 
         [Column("PRA Statement")]
-        public string PraStatement { get; set; }
+        public string PRAStatement { get; set; }
 
         [Column("PRA Statement Locations")]
-        public string PraStatementLocations { get; set; }
+        public string PRAStatementLocations { get; set; }
 
         [Column("Respondent Age 0-2")]
         public bool? Age0_2 { get; set; }
@@ -244,19 +244,19 @@ namespace EDIPrivate.Models
         public int? Paper { get; set; }
 
         [Column("Phone (Not CATI)")]
-        public int? PhoneNotCati { get; set; }
+        public int? PhoneNotCATI { get; set; }
 
         [Column("CATI")]
-        public int? Cati { get; set; }
+        public int? CATI { get; set; }
 
         public int? Web { get; set; }
         public int? Email { get; set; }
 
         [Column("F2F (Not CAPI)")]
-        public int? F2FNotCapi { get; set; }
+        public int? F2FNotCAPI { get; set; }
 
         [Column("CAPI")]
-        public int? Capi { get; set; }
+        public int? CAPI { get; set; }
 
         public int? Spreadsheet { get; set; }
 
