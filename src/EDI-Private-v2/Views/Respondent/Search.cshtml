@@ -1,0 +1,125 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var queryStr = new List<string>();
+    if (ViewBag.queryItems.Length > 3)
+    {
+        var respondentKeys = new Dictionary<string, string>()
+        {
+            { "parent", "Parent Collection Name" },
+            { "type", "Type" },
+            { "description", "Description" },
+            { "keywords", "Keywords" },
+            { "voluntary", "Voluntary Response" },
+            { "mandatory", "Mandatory Response" },
+            { "requiredforbenefits", "Required for Benefits Response" },
+            { "requirementdescription", "Response Requirement Description" },
+            { "requirementreason", "Response Requirement Reason" },
+            { "populationsizeestimated", "Estimated Population Size" },
+            { "populationsize", "Population Size" },
+            { "populationsizedescription", "Population Size Description" },
+            { "responsesizeestimated", "Estimated Response Size" },
+            { "responsesize", "Response Size" },
+            { "responserateestimated", "Estimated Respones Rate" },
+            { "responserate", "Response Rate" },
+            { "responseratedescription", "Response Rate Description" },
+            { "burden", "Burden" },
+            { "burdenperrespondent", "Burden Per Respondent" },
+            { "burdenperrespondentsurvey", "Survey Burden Per Respondent" },
+            { "burdenperrespondentassessment", "Assessment Burden Per Respondent" },
+            { "consentexplicit", "Explicit Consent" },
+            { "consentimplicit", "Implicit Consent" },
+            { "consentnotapplicable", "Consent Not Applicable" },
+            { "consentform", "Consent Form" },
+            { "population", "Population" },
+            { "populationdescription", "Population Description" },
+            { "responsetype", "Response Type" },
+            { "responsetypdescription", "Response Type Description" },
+            { "responsemode", "Response Mode" },
+            { "responsemodedescription", "Response Mode Description" },
+            { "additionallanguageinstrument", "Instrument Additional Language" },
+            { "additionallanguageinterpreter", "Interpreter Additional Language" },
+            { "incentivecashvalue", "Cash Incentive Value" },
+            { "incentivecashdescription", "Cash Incentive Description" },
+            { "incentivenoncashvalue", "Non-Cash Incentive Value"},
+            { "incentivenoncashdescription", "Non-Cash Incentive Description"},
+            { "incentivejustification", "Incentive Justification"},
+            { "confidentialitylaw", "Confidentiality Law" },
+            { "voluntaryconfidentialitystatementinstrument", "Instrument Voluntary & Confidentiality Statement" },
+            { "voluntaryconfidentialitystatementcontactmaterial", "Contact Material Voluntary & Confidentiality Statement" },
+            { "voluntaryconfidentialitystatementfaq", "FAQ Voluntary & Confidentiality Statement" },
+            { "voluntaryconfidentialitystatementbrochure", "Brochure Voluntary & COnfidentiality Statement" },
+            { "followupinformedconsentstatement", "Follow-Up Informed Consent Statement" },
+            { "followupinformedconsentlocation", "Follow-Up Informed Consent Statement Location" },
+            { "paperworkreductionactstatement", "Paperwork Reduction Act Statement" },
+            { "paperworkreductionactlocation", "Paperwork Reduction Act Statement Location" }
+        };
+
+        int i = 3;
+        while (i < ViewBag.queryItems.Length)
+        {
+            if (ViewBag.queryItems[i - 1] == "cmp")
+            {
+                queryStr.Add(ViewBag.queryItems[i].ToUpper());
+            }
+            else
+            {
+                queryStr.Add(respondentKeys[ViewBag.queryItems[i - 1]] + " = " + ViewBag.queryItems[i]);
+            }
+
+            i = i + 2;
+        }
+    }
+}
+
+@model IEnumerable<RespondentStubViewModel>
+<div class="containerSearch">
+    <div id="divSearch">
+        <div id="aSearchCriteria">
+            <div id="divSearchSteps">
+                <div class="roundedBox">
+                    <span class="searchStep">Search in RESPONDENT with:</span>
+                    <p style="text-align:left; margin-left:30px;">
+                        @if (!string.IsNullOrWhiteSpace(queryStr.FirstOrDefault()))
+                        {
+                            @foreach (var item in queryStr)
+                            {
+                                <span style="margin-right:10px;">@item</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="divSearchResults">
+            <div class="searchResults">
+                <span style="margin:0 10px 0 10px;float: left;" class="ui-icon ui-icon-triangle-1-e icon orange"></span>
+                @Model.Count() RESPONDENT @if (Model.Count() == 1)
+                { <text>matches</text> }
+                else
+                { <text>match</text> } your query
+            </div>
+            <div class="containerMainSearchResults">
+                @if (Model.Any())
+                {
+                    <ul>
+                        @foreach (var item in Model.OrderBy(r => r.Description))
+                        {
+                            @if (item != default(RespondentStubViewModel) && item.Id != 0 && !string.IsNullOrWhiteSpace(item.Description))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Respondent", new { Id = item.Id })">@item.Description</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="emptyResult">Nothing matches your search term.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

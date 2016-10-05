@@ -1,0 +1,296 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="HowToSearch" class="roundedBox" style="margin: 25px 140px 0 140px; width: auto; padding: 25px;">
+    <div class="wwwText">
+        <strong>How to Search</strong>
+    </div>
+    <p>
+        The search function is keyword-based, and collects results from the series, study and variable levels of each data collection. The following highlights important search functions of the ED Data Inventory, guiding first-time users in navigating the application.
+    </p>
+    <div style="text-transform: uppercase;">
+        <span class="ui-icon ui-icon-triangle-1-e icon orange" style="float: left;"></span><a href="#BasicSearch">How to Search the Inventory</a><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange" style="float: left;"></span><a href="#AdvancedSearch">How to Perform an Advanced Search</a><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange" style="float: left;"></span><a href="#SeriesVariableSearch">How to Perform a Series Variable Search</a><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange" style="float: left;"></span><a href="#StudyVariableSearch">How to Perform a Study Variable Search</a><br />
+    </div>
+</div>
+
+<div id="BasicSearch" class="roundedBox" style="margin: 10px 140px 0 140px; width: auto; padding: 25px;">
+    <div class="wwwText">
+        <strong>How to Search the Inventory</strong><br />
+    </div>
+    <p>Basic search will perform a default boolean “And” search for multiple search terms. For example, searching on “child care” will yield results that contain both “child” and “care”.</p>
+    <img src="~/images/howtosearch/search_bar.png" alt="Search bar text box and button" />
+    <p>
+        <span class="searchStep">To perform a basic search:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Type a search term in the text box located on the upper right-hand corner of the toolbar.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the <img src="~/images/howtosearch/search-button.png" alt="Search button" style="vertical-align: text-bottom;"> button or press the Enter key.
+    </p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p>
+        The search results shows all series that match your query, as well as the number of studies within each series that contain the search term. By default, the list of studies and the number of variables within each study that match your query are hidden from view.
+    </p>
+    <img src="~/images/howtosearch/search_results.png" alt="Default search results" />
+    <p>
+        <span class="searchStep">To view all matching studies and variables:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “Expand All” link.
+    </p>
+    <p>
+        <span class="searchStep">To view matching studies and variables for a series:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the <span class="ui-icon ui-icon-circle-plus icon dkgrey" style="float: none;"></span>icon or “study matches your query” link.<br />
+    </p>
+    <p></p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <img src="~/images/howtosearch/search_results_expanded.png" alt="Expanded default search results" />
+    <p>
+        <span class="searchStep">To view series details:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the series title link.<br />
+    </p>
+    <p>
+        <span class="searchStep">To view study details:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the study title link.<br />
+    </p>
+    <p>
+        <span class="searchStep">To view matching variables within a study:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “variables” link.<br />
+    </p>
+    <p></p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <img src="~/images/howtosearch/back_to_search_results.png" alt="Back to Search Results link" />
+    <p>
+        <span class="searchStep">To return to the search results from the “SERIES” or “STUDY” tab:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “BACK TO SEARCH RESULTS” button located above the “SERIES” and “STUDY” tabs.<br />
+    </p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <div>
+        <a href="#HowToSearch"><span class="ui-icon ui-icon-circle-arrow-n icon"></span>BACK TO TOP</a>
+    </div>
+</div>
+<div id="AdvancedSearch" class="roundedBox" style="margin: 10px 140px 0 140px; width: auto; padding: 25px;">
+    <div class="wwwText">
+        <strong>How to Perform an Advanced Search</strong><br />
+    </div>
+    <p>
+        Advanced search allows you to select the boolean search operator to be used in your query: “And”, “Or” or “Exact Match”.
+    </p>
+    <p></p>
+    <img src="~/images/howtosearch/advanced_search.png" alt="Advanced search link" />
+    <p>
+        <span class="searchStep">To perform an advanced search:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “ADVANCED SEARCH” link located on the menu bar.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>From the main search page, type a search term in the text box.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Select a search operator.
+    </p>
+    <table style="border-collapse: separate; border-spacing: 1px; padding: 2px;" class="sortableTable">
+        <thead>
+            <tr style="background-color: #e4f1fb;">
+                <td>Operator</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+        <tr style="background-color: #EDECE1">
+            <td>And</td>
+            <td>Narrows the search to include data containing all of the words entered.</td>
+        </tr>
+        <tr style="background-color: #EDECE1">
+            <td>Or</td>
+            <td>Broadens the search to include data containing any of the words entered.</td>
+        </tr>
+        <tr style="background-color: #EDECE1">
+            <td>Exact Match</td>
+            <td>Narrows the search to include data containing the exact search term.</td>
+        </tr>
+    </table>
+    <p>
+        <span class="ui-icon ui-icon-triangle-1-e icon orange" style="float: left;"></span>Click the “SEARCH” button.
+    </p>
+    <p></p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p>
+        The search results shows all series that match your query, as well as the number of studies within each series that contain the search term. By default, the list of studies and the number of variables within each study that match your query are hidden from view.
+    </p>
+    <img src="~/images/howtosearch/search_results.png" alt="Default search results" />
+    <p>
+        <span class="searchStep">To view all matching studies and variables:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “Expand All” link.
+    </p>
+    <p>
+        <span class="searchStep">To view matching studies and variables for a series:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the <span class="ui-icon ui-icon-circle-plus icon dkgrey"></span>icon or “study matches your query” link.<br />
+    </p>
+    <p></p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <img src="~/images/howtosearch/search_results_expanded.png" alt="Expanded default search results" />
+    <p>
+        <span class="searchStep">To view series details:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the series title link.<br />
+    </p>
+    <p>
+        <span class="searchStep">To view study details:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the study title link.<br />
+    </p>
+    <p>
+        <span class="searchStep">To view matching variables within a study:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “variables” link.<br />
+    </p>
+    <p></p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <img src="~/images/howtosearch/back_to_search_results.png" alt="Back to Search Results link" />
+    <p>
+        <span class="searchStep">To return to the search results from the “SERIES” or “STUDY” tab:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “BACK TO SEARCH RESULTS” button located above the “SERIES” and “STUDY” tabs.<br />
+    </p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <div>
+        <a href="#HowToSearch"><span class="ui-icon ui-icon-circle-arrow-n icon"></span>BACK TO TOP</a>
+    </div>
+</div>
+<div id="SeriesVariableSearch" class="roundedBox" style="margin: 10px 140px 0 140px; width: auto; padding: 25px;">
+    <div class="wwwText">
+        <strong>How to Perform a Series Variable Search</strong><br />
+    </div>
+    <p>
+        <img src="~/images/howtosearch/series_variable_search.png" alt="Series variable search" style="width: 625px;" />
+    </p>
+    <p>
+        <span class="searchStep">To search variables within a series:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>From the “SERIES” tab, click the “SERIES VARIABLE” section header.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Type a search term in the text box.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Select a search operator.<br />
+    </p>
+    <table style="border-collapse: separate; border-spacing: 1px; padding: 2px;" class="sortableTable">
+        <thead>
+            <tr style="background-color: #e4f1fb;">
+                <td>Operator</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+        <tr style="background-color: #EDECE1">
+            <td>And</td>
+            <td>Narrows the search to include data containing all of the words entered.</td>
+        </tr>
+        <tr style="background-color: #EDECE1">
+            <td>Or</td>
+            <td>Broadens the search to include data containing any of the words entered.</td>
+        </tr>
+        <tr style="background-color: #EDECE1">
+            <td>Exact Match</td>
+            <td>Narrows the search to include data containing the exact search term.</td>
+        </tr>
+    </table>
+    <p>
+        <span class="ui-icon ui-icon-triangle-1-e icon orange" style="float: left;"></span>Click the “SEARCH” button.
+    </p>
+    <p></p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p>
+        The search results shows all variables within the series that match your query. By default, the variable value labels are hidden from view. Word(s) that match your search term will be highlighted in yellow.
+    </p>
+    <img src="~/images/howtosearch/series_variable_search_expand.png" alt="Expand series variable value labels" />
+    <p>
+        <span class="searchStep">To view all variable value labels:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “Expand All Value Labels” link.
+    </p>
+    <p>
+        <span class="searchStep">To view value labels for a variable:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the <span class="ui-icon ui-icon-circle-plus icon dkgrey"></span>icon or “Value Labels” link for a particular variable.<br />
+    </p>
+    <p></p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <img src="~/images/howtosearch/series_variable_export.png" alt="Export series variables" />
+    <p>
+        <span class="searchStep">To export all variable details to csv:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the check box on the table header.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “Export to CSV” link.
+    </p>
+    <p>
+        <span class="searchStep">To export details for a subset of variables to csv:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the check box to the left of the name of each variable you want to select.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “Export to CSV” link.
+    </p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <div>
+        <a href="#HowToSearch"><span class="ui-icon ui-icon-circle-arrow-n icon"></span>BACK TO TOP</a>
+    </div>
+</div>
+<div id="StudyVariableSearch" class="roundedBox" style="margin: 10px 140px 0 140px; width: auto; padding: 25px;">
+    <div class="wwwText">
+        <strong>How to Perform a Study Variable Search</strong><br />
+    </div>
+    <p>
+        <img src="~/images/howtosearch/study_variable_search.png" alt="Study variable search" style="width: 625px;" />
+    </p>
+    <p>
+        <span class="searchStep">To search variables within a study:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>From the “STUDY” tab, click the “STUDY VARIABLE” section header.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Type a search term in the text box.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Select a search operator.<br />
+    </p>
+    <table style="border-collapse: separate; border-spacing: 1px; padding: 2px;" class="sortableTable">
+        <thead>
+            <tr style="background-color: #e4f1fb;">
+                <td>Operator</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+        <tr style="background-color: #EDECE1">
+            <td>And</td>
+            <td>Narrows the search to include data containing all of the words entered.</td>
+        </tr>
+        <tr style="background-color: #EDECE1">
+            <td>Or</td>
+            <td>Broadens the search to include data containing any of the words entered.</td>
+        </tr>
+        <tr style="background-color: #EDECE1">
+            <td>Exact Match</td>
+            <td>Narrows the search to include data containing the exact search term.</td>
+        </tr>
+    </table>
+    <p>
+        <span class="ui-icon ui-icon-triangle-1-e icon orange" style="float: left;"></span>Click the “SEARCH” button.
+    </p>
+    <p></p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p>
+        The search results shows all variables within the study that match your query. By default, the variable value labels are hidden from view. Word(s) that match your search term will be highlighted in yellow.
+    </p>
+    <img src="~/images/howtosearch/study_variable_search_expand.png" alt="Expand study variable value labels" />
+    <p>
+        <span class="searchStep">To view all variable value labels:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “Expand All Value Labels” link.
+    </p>
+    <p>
+        <span class="searchStep">To view value labels for a variable:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the <span class="ui-icon ui-icon-circle-plus icon dkgrey"></span>icon or “Value Labels” link for a particular variable.<br />
+    </p>
+    <p></p>
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <img src="~/images/howtosearch/study_variable_export.png" alt="Export study variables" />
+    <p>
+        <span class="searchStep">To export all variable details to csv:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the check box on the table header.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “Export to CSV” link.
+    </p>
+    <p>
+        <span class="searchStep">To export details for a subset of variables to csv:</span><br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the check box to the left of the name of each variable you want to select.<br />
+        <span class="ui-icon ui-icon-triangle-1-e icon orange"></span>Click the “Export to CSV” link.
+    </p>
+
+    <div style="border-top: 1px dashed #d5d5cb;"></div>
+    <p></p>
+    <div>
+        <a href="#HowToSearch"><span class="ui-icon ui-icon-circle-arrow-n icon"></span>BACK TO TOP</a>
+    </div>
+</div>

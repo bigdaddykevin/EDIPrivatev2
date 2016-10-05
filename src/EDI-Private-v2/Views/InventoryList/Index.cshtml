@@ -1,0 +1,43 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<StudyStubViewModel>
+<div class="roundedBox" style="margin: 25px; width: auto; padding: 25px;">
+    <div class="wwwText">
+        <strong>Inventory List</strong><br />
+    </div>
+    <div id="ajaxInventoryListWait"></div>
+    <p style="font-size: smaller;">DISCLAIMER: This is the first beta version of the ED Data Inventory. It is not yet an exhaustive list of ED data collections. ED is planning future updates in response to user feedback and regular expansion as data collections are indexed and added.</p>
+    <div id="divInventoryList">
+        <div class="searchResults">
+            <a href="javascript:void(0)" id="aSortSeriesList">Sort Descending</a>
+        </div>
+        <div id="containerInventoryList">
+            <table id="tblInventoryList" class="tablesorter" style="margin: 2px;">
+                <thead style="display: none;">
+                    <tr>
+                        <th>STUDY List</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        @if (item.Id > 0 && !string.IsNullOrWhiteSpace(item.Name))
+                        {
+                            <tr>
+                                <td style="padding: 3px 0 5px 0;">
+                                    <div style="margin: 0 8px;" class="bold">
+                                        <a href="@Url.Action("Index", "Study", new { id = item.Id })">@item.Name</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

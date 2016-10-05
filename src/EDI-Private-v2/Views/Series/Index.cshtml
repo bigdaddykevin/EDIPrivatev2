@@ -1,0 +1,160 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model SeriesViewModel
+<div id="ajaxDetailWait"></div>
+<div id="tabs">
+    <ul>
+        <li id="tbSeries">
+            <a href="#tabSeries">SERIES</a>
+        </li>
+        @if (Model.Studies.Any())
+        {
+            <li id="tbStudy">
+                <a href="#tabStudy">STUDY</a>
+            </li>
+        }
+    </ul>
+    <div id="tabSeries">
+        <div id="divSeries">
+            <table style="width: 100%; margin-bottom: 10px" id="tblSeries" class="detailTables">
+                <tr>
+                    <td style="font-weight:bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                        @Model.Name
+                        <div style="float:right">
+                            <input role="search" title="Search series" style="width:130px;padding:0;font-size:small" type="text" name="txtSeriesSearchTerm" id="txtSeriesSearchTerm" />
+                            <button class="btn" role="button" title="Search Series" id="seriesSearchBtn">
+                                Search
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                </tr>
+                @if (!string.IsNullOrWhiteSpace(Model.Symbol))
+                {
+                    <tr>
+                        <td class="bold" style="width: 160px;">@Html.DisplayNameFor(_ => Model.Symbol):</td>
+                        <td>@Model.Symbol</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName1))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName1):</td>
+                        <td>@Model.OldName1</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName1Symbol))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName1Symbol):</td>
+                        <td>@Model.OldName1Symbol</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName1Duration))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName1Duration):</td>
+                        <td>@Model.OldName1Duration</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName2))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName2):</td>
+                        <td>@Model.OldName2</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName2Symbol))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName2Symbol):</td>
+                        <td>@Model.OldName2Symbol</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName2Duration))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName2Duration):</td>
+                        <td>@Model.OldName2Duration</td>
+                    </tr>
+
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ParentOrganization))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ParentOrganization):</td>
+                        <td>@Model.ParentOrganization</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Description):</td>
+                        <td>@Model.Description</td>
+                    </tr>
+                }
+                @if (Model.Studies.Any())
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Studies):</td>
+                        <td>
+                            <ul>
+                                @foreach (var item in Model.Studies.OrderBy(c => c.Name))
+                                {
+                                    @if (item.Id > 0 && !string.IsNullOrWhiteSpace(item.Name))
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Study", new { Id = item.Id })">@item.Name</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    @if (Model.Studies.Any())
+    {
+    <!--tab Study-->
+        <div id="tabStudy">
+            <div id="divStudyDetail">
+                <table style="width: 100%; margin-bottom: 10px" id="tblSeriesStudy" class="detailTables">
+                    <tr>
+                        <td style="font-weight: bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                            @Html.DisplayNameFor(_ => Model.Studies)
+                            <div style="float:right">
+                                <input role="search" title="Search Study" style="width:130px;padding:0;font-size:small" type="text" name="txtStudySearchTerm" id="txtStudySearchTerm" />
+                                <button role="button" class="btn" title="Search Study" id="studySearchBtn">
+                                    Search
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <ul>
+                                @foreach (var item in Model.Studies.OrderBy(c => c.Name))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Index", "Study", new { Id = item.Id })">@item.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+</div>

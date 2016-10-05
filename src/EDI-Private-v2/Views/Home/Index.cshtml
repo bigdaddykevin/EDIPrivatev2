@@ -1,109 +1,544 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+<div class="diHPTwo">
+    <div id="container">
+        <div id="example">
+            <div id="slides">
+                <div class="slides_container">
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 178 })" class="slideSeries" id="178">
+                            <img src="~/images/ALS_banner.jpg" width="450" height="250" alt="Student browsing through books at academic library" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/ALS.gif" height="40" alt="Academic Libraries Survey logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Academic Libraries Survey</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 216 })" class="slideSeries" id="216">
+                            <img src="~/images/NRS_banner.jpg" width="450" height="250" alt="Instrutor helping adult student" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/NRS.gif" height="40" alt="Adult Education and Family Literacy logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Adult Education and Family Literacy</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    @*<div class="slide">
+                            <a href="javascript:void(0)" class="slideSeries" id="173">
+                                <img src="~/images/ATC21S_banner.jpg" width="450" height="250" alt="Teacher helping students in computer lab" />
+                                <div class="caption" style="bottom:0;">
+                                    <div><p class="mainTtl"><span class="seriesName">Assessment & Teaching of 21st-Century Skills</span></p></div>
+                                    <div style="float: left; margin-top: 2px; margin-right: 10px;"><img src="~/images/ATC21S.png" height="40" alt="Assessment & Teaching of 21st-Century Skills logo" /></div>
+                                </div>
+                            </a>
+                        </div>*@
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 187 })" class="slideSeries" id="187">
+                            <img src="~/images/BB_banner.jpg" width="450" height="250" alt="Woman viewing application for employment" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/B_and_B.gif" height="40" alt="Baccalaureate and Beyond Longitudinal Study logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Baccalaureate and Beyond Longitudinal Study</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 190 })" class="slideSeries" id="190">
+                            <img src="~/images/BPS_banner.jpg" width="450" height="250" alt="Postsecondary students in lecture hall" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/BPS.gif" height="40" alt="Beginning Postsecondary Students Longitudinal Study logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Beginning Postsecondary Students Longitudinal Study</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 215 })" class="slideSeries" id="215">
+                            <img src="~/images/Perkins_banner.jpg" width="450" height="250" alt="Instrutor helping adult students" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/Perkins.gif" width="150" alt="Carl D. Perkins Career & Technical Education Act of 2006 Consolidated Annual Report logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Carl D. Perkins Career & Technical Education Act of 2006 Consolidated Annual Report</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 210 })" class="slideSeries" id="210">
+                            <img src="~/images/CRDC_banner.jpg" width="450" height="250" alt="Students of different races and ethnicity" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/CRDC.png" height="40" alt="Civil Rights Data Collection logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Civil Rights Data Collection</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 175 })" class="slideSeries" id="175">
+                            <img src="~/images/CCD_banner.jpg" width="450" height="250" alt="High school" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/CCD.gif" height="40" alt="Common Core of Data logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Common Core of Data</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 212 })" class="slideSeries" id="212">
+                            <img src="~/images/CSPR_banner.jpg" width="450" height="250" alt="Student completing a scantron test" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/CSPR.jpg" height="40" alt="Department of Education logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Consolidated State Performance Report</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 169 })" class="slideSeries" id="169">
+                            <img src="~/images/ECLS_banner.jpg" width="450" height="250" alt="School age children coloring" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/ECLS.gif" height="40" alt="Early Childhood Longitudinal Study logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Early Childhood Longitudinal Study</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 196 })" class="slideSeries" id="196">
+                            <img src="~/images/EdFacts_banner.jpg" width="450" height="250" alt="Bar graph" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/EDFacts.jpg" height="40" alt="EDFacts logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">EDFacts</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    @*<div class="slide">
+                            <a href="javascript:void(0)" class="slideSeries" id="200">
+                                <img src="~/images/EDFactsPSC_banner.jpg" width="450" height="250" alt="Paper survey" />
+                                <div class="caption" style="bottom:0;">
+                                    <table>
+                                        <tr>
+                                            <td style="padding-right: 10px; width: 40px;"><img src="~/images/EDFacts.jpg" height="40" alt="EDFacts Partner Support Center Customer Survey logo" /></td>
+                                            <td><p class="mainTtl"><span class="seriesName">EDFacts Partner Support Center Customer Survey</span></p></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </a>
+                        </div>*@
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 183 })" class="slideSeries" id="183">
+                            <img src="~/images/ELS_banner.jpg" width="450" height="250" alt="Student completing a scantron test" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/ELS.gif" height="40" alt="Education Longitudinal Study logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Education Longitudinal Study</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 214 })" class="slideSeries" id="214">
+                            <img src="~/images/FRSS_banner.jpg" width="450" height="250" alt="Students carrying books and backpacks" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/FRSS.gif" height="40" alt="Fast Response Survey System logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Fast Response Survey System</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 183 })" class="slideSeries" id="183-2">
+                            <img src="~/images/HSLS_banner.jpg" width="450" height="250" alt="High school students talking to a teacher" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/HSLS.gif" height="40" alt="High School Longitudinal Study logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">High School Longitudinal Study</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 205 })" class="slideSeries" id="205">
+                            <img src="~/images/IDEA_B_banner.jpg" width="450" height="250" alt="Child with disability" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/IDEA.gif" height="40" alt="IDEA logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">IDEA Part B State Performance Plan and Annual Performance Report</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 204 })" class="slideSeries" id="204">
+                            <img src="~/images/IDEA_C_banner.jpg" width="450" height="250" alt="Toddler with disability" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/IDEA.gif" height="40" alt="IDEA logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">IDEA Part C State Performance Plan and Annual Performance Report</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 189 })" class="slideSeries" id="189">
+                            <img src="~/images/IPEDS_banner.jpg" width="450" height="250" alt="Postsecondary students in computer lab with instructor" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/IPEDS.gif" height="40" alt="Integrated Postsecondary Education Data System logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName" style="white-space: nowrap;">Integrated Postsecondary Education Data System</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 170 })" class="slideSeries" id="170">
+                            <img src="~/images/ALL_banner.jpg" width="450" height="250" alt="Adult helping child with homework" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/ALL.gif" height="40" alt="International Adult Literacy & Lifeskills Survey logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">International Adult Literacy & Lifeskills Survey</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 194 })" class="slideSeries" id="194">
+                            <img src="~/images/NAAL_banner.jpg" width="450" height="250" alt="Adult students in computer lab" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/NAAL.gif" height="40" alt="National Assessment of Adult Literacy logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName" style="white-space: nowrap;">National Assessment of Adult Literacy</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 193 })" class="slideSeries" id="193">
+                            <img src="~/images/NAEP_banner.jpg" width="450" height="250" alt="Scantron test" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/NAEP.jpg" height="40" alt="National Assessment of Education Progress logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName" style="white-space: nowrap;">National Assessment of Education Progress</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 163 })" class="slideSeries" id="163">
+                            <img src="~/images/NHES_banner.jpg" width="450" height="250" alt="Adult helping child with homework" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/NHES.gif" height="40" alt="National Household Education Surveys Program logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">National Household Education Surveys Program</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    @*<div class="slide">
+                            <a href="javascript:void(0)" class="slideSeries" id="199">
+                                <img src="~/images/NLTS2_banner.jpg" width="450" height="250" alt="Young soccer player kicking a goal" />
+                                <div class="caption" style="bottom:0;">
+                                    <div><p class="mainTtl"><span class="seriesName">National Longitudinal Transition Study</span></p></div>
+                                    <div style="float: left; margin-top: 2px; margin-right: 10px;"><img src="~/images/NLTS2.gif" height="40" alt="National Longitudinal Transition Study logo" /></div>
+                                </div>
+                            </a>
+                        </div>*@
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 186 })" class="slideSeries" id="186">
+                            <img src="~/images/NPSAS_banner.jpg" width="450" height="250" alt="Scholarship application" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/NPSAS.gif" height="40" alt="National Postsecondary Student Aid Study logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">National Postsecondary Student Aid Study</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 219 })" class="slideSeries" id="219">
+                            <img src="~/images/NPEFS_banner.jpg" width="450" height="250" alt="Graphical figures" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/CCD.gif" height="40" alt="Common Core of Data logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">National Public Education Financial Survey</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 191 })" class="slideSeries" id="191">
+                            <img src="~/images/NSOPF_banner.jpg" width="450" height="250" alt="Postsecondary students raising their hands in lecture hall" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/NSOPF.gif" height="40" alt="National Study of Postsecondary Faculty logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">National Study of Postsecondary Faculty</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 217 })" class="slideSeries" id="217">
+                            <img src="~/images/PEQIS_banner.jpg" width="450" height="250" alt="Postsecondary students raising their hands in lecture hall" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/PEQIS.gif" height="40" alt="Postsecondary Education Quick Information System logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Postsecondary Education Quick Information System</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 198 })" class="slideSeries" id="198">
+                            <img src="~/images/PEELS_banner.jpg" width="450" height="250" alt="Pre-Elementary teacher helping group of students" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/PEELS.png" width="150" alt="National Center for Special Education Research logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Pre-Elementary Education Longitudinal Study</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 181 })" class="slideSeries" id="181">
+                            <img src="~/images/PSS_banner.jpg" width="450" height="250" alt="Private school teacher helping student" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/PSS.gif" height="40" alt="Private School Universe Survey logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Private School Universe Survey</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 167 })" class="slideSeries" id="167">
+                            <img src="~/images/PISA_banner.jpg" width="450" height="250" alt="High school students sitting on lawn" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/PISA.gif" height="40" alt="Program for International Student Assessment logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Program for International Student Assessment</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 164 })" class="slideSeries" id="164">
+                            <img src="~/images/PIAAC_banner.jpg" width="450" height="250" alt="Older students in classroom" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/PIAAC.gif" width="40" alt="Program for the International Assessment of Adult Competencies logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Program for the International Assessment of Adult Competencies</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 166 })" class="slideSeries" id="166">
+                            <img src="~/images/PIRLS_banner.jpg" width="450" height="250" alt="Older student reading younger student" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/PIRLS.gif" height="40" alt="Progress in International Reading Literacy Study logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Progress in International Reading Literacy Study</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 185 })" class="slideSeries" id="185">
+                            <img src="~/images/PLS_banner.jpg" width="450" height="250" alt="Student browsing through books at public library" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/PLS.gif" height="40" alt="Public Libraries Survey logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Public Libraries Survey</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 180 })" class="slideSeries" id="180">
+                            <img src="~/images/SSOCS_banner.jpg" width="450" height="250" alt="Drug-free school zone sign" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/SSOCS.gif" height="40" alt="School Survey on Crime and Safety logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">School Survey on Crime and Safety</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 177 })" class="slideSeries" id="177">
+                            <img src="~/images/SASS_banner.jpg" width="450" height="250" alt="Teacher in front of a black board" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/SASS.gif" height="40" alt="Schools and Staffing Survey logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Schools and Staffing Survey</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 184 })" class="slideSeries" id="184">
+                            <img src="~/images/StLA_banner.jpg" width="450" height="250" alt="Adults in library" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/StLA.gif" height="40" alt="State Library Agencies Survey logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">State Library Agencies Survey</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 174 })" class="slideSeries" id="174">
+                            <img src="~/images/TALIS_banner.jpg" width="450" height="250" alt="Teacher helping students" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/TALIS.gif" height="40" alt="Teaching and Learning International Survey logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Teaching and Learning International Survey</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="@Url.Action("Index", "Series", new { id = 171 })" class="slideSeries" id="171">
+                            <img src="~/images/TIMSS_banner.jpg" width="450" height="250" alt="Student in front of a black board" />
+                            <div class="caption" style="bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 10px; width: 40px;"><img src="~/images/TIMSS.gif" width="40" alt="Trends in International Mathematics & Science Study logo" /></td>
+                                        <td><p class="mainTtl"><span class="seriesName">Trends in International Mathematics & Science Study</span></p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
+                </div><p style="padding-left:100px; margin-top:2px;">Click the picture to view series details</p>
+                <a href="#" class="prev"><img src="~/images/arrow-prev.png" width="24" height="43" alt="Arrow Prev" /></a>
+                <a href="#" class="next"><img src="~/images/arrow-next.png" width="24" height="43" alt="Arrow Next" /></a>
             </div>
+            <img src="~/images/example-frame.png" alt="Example Frame" id="frame" />
         </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet, Bower, and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
+        <div class="roundedBox">
+            <p class="wwwText"><strong>What’s New in the Inventory</strong></p>
+            <p>
+                <span class="searchStep">EDFacts</span><br />
+                <a class="aSeriesStudyList" href="@Url.Action("Index", "Series", new { id = 196 })">EDFacts</a> centralizes performance data supplied by state education agencies with other data assets within ED to enable better analysis in policy development, planning, and management.
+            </p>
+            <!--  <p>
+                     <span class="searchStep">Longitudinal Studies</span><br />
+                     NCES sponsors a series of longitudinal studies related to secondary and postsecondary students. At the secondary level, studies include <a class="aSeriesStudyList" href="javascript:void(0)">NELS</a>, <a class="aSeriesStudyList" href="javascript:void(0)">NLS</a>, and <a class="aSeriesStudyList" href="javascript:void(0)">HS&B</a>. At the postsecondary level, <a class="aSeriesStudyList" href="javascript:void(0)">NPSAS</a> serves as the baseline for two follow-up studies: <a class="aSeriesStudyList" href="javascript:void(0)">B&B</a> and <a class="aSeriesStudyList" href="javascript:void(0)">BPS</a>.</p>
+                 <p>
+                     <span class="searchStep">CCD</span><br />
+                     <a class="aSeriesStudyList" href="javascript:void(0)">CCD</a> is an annual collection of fiscal and non-fiscal data about all public elementary and secondary schools, public school districts, and state education agencies throughout the United States.</p>
+            <p>!-->
+            <span class="searchStep">FRSS</span><br />
+            <a class="aSeriesStudyList" href="@Url.Action("Index", "Series", new { id = 214 })">FRSS</a> is a survey system designed to collect issue-oriented data from state education agencies and national samples of other educational organizations and participants, with minimal burden on respondents and within a relatively short period of time.</p>
+            <p>
+                <span class="searchStep">Gun Free Schools Reports</span><br />
+                The <a class="aSeriesStudyList" href="@Url.Action("Index", "Series", new { id = 227 })">Gun Free Schools Reports</a> are annual reports submitted by each state in accordance with the Gun-Free Schools Act (GFSA).
+            </p>
+            <!--  <p>
+                      <span class="searchStep">NAEP</span><br />
+                     <a class="aSeriesStudyList" href="javascript:void(0)">NAEP</a> collects and reports information on student performance at the national, state, and local levels, making the assessment an integral part of assessing the condition and progress of education in the United States. <a class="aSeriesStudyList" href="javascript:void(0)">NIES</a>, designed to describe the condition of education for American Indian and Alaska Native students in the United States, is administered as part of NAEP.</p>
+                  <p>
+                      <span class="searchStep">Teacher Shortage Areas</span><br />
+                    The <a class="aSeriesStudyList" href="javascript:void(0)">Teacher Shortage Areas</a> program collects information about teaching needs in the 50 United States and the outlying jurisdictions.</p>!-->
         </div>
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
 </div>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=518004">Bower</a> for managing client-side libraries</li>
-            <li>Theming using <a href="http://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
+<div class="diHPOne">
+    <div class="welBox">
+        <span class="welOne">Welcome to the<br /><span style="text-transform: uppercase;">Department of Education’s</span></span><br />
+        <span class="welTwo">ED Data Inventory</span>
+        <p>We hope that you will find the information included in the inventory useful in your search for data about education. To get the best results, we encourage you to use the tabs on this page to learn more “About the Inventory”, “How to Search” and to browse the “Inventory List.” </p>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699562">Add an appsetting in config and access it in app.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699318">Add client packages using Bower.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run & Deploy</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+    <div class="roundedBox">
+        <div class="wwwText">
+            <p><strong>WHAT’s INCLUDED?</strong><br />The goal of the ED Data Inventory is to describe all data reported to the Department of Education, with the exception of personnel and administrative data. It includes data collected as part of grant activities, along with statistical data collected to allow publication of valuable statistics about the state of education in this country. The ED Data Inventory includes descriptive information about each data collection, along with information on the specific data elements in individual collections.</p>
+            <p><strong>HOW WAS THE INVENTORY PREPARED?</strong><br />The Department’s Data Strategy Team sponsored the development of the Inventory and created a working group with representatives from the various offices that collect and manage data. The Working Group started by identifying relevant information fields and assembling information about collections. The fields in the inventory were initially populated by drawing upon a subset of the information included in the Information Collection Request packages that are prepared for clearance by the Office of Management and Budget (OMB). The Inventory will be continually updated as part of the Information Collection Request process.</p>
+            <p><strong>WHY WAS THE INVENTORY CREATED?</strong><br />We created the Inventory to improve the coordination of data collections across program offices, and so that we could make sure we were minimizing respondent burden. Additionally, creation of the Inventory is part of larger efforts to ensure responsible data management at ED. Finally, the Inventory lets us be transparent with the public about the data that ED collects and maintains. The Inventory is in compliance with OMB Directive M-13-13 (May 9, 2013).</p>
+        </div>
     </div>
 </div>

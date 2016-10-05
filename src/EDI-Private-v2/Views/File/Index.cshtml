@@ -1,0 +1,204 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model FileViewModel
+<div id="ajaxDetailWait"></div>
+<div id="tabs">
+    <ul>
+        @if (Model.Studies.Any())
+        {
+            <li id="tbStudy">
+                <a href="#tabStudy">STUDY</a>
+            </li>
+        }
+        <li id="tbFile">
+            <a href="#tabFile">FILE</a>
+        </li>
+    </ul>
+    <div id="tabFile">
+        <div id="divFile">
+            <table style="width: 100%; margin-bottom: 10px" id="tblFiles" class="detailTables">
+                <tr>
+                    <td style="font-weight:bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                        @Model.Name
+                        <div style="float:right">
+                            <input role="search" title="Search file" style="width:130px;padding:0;font-size:small" type="text" name="txtFileSearchTerm" id="txtFileSearchTerm" />
+                            <button role="button" class="btn" title="Search File" id="fileSearchBtn">
+                                Search
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                </tr>
+                @if (!string.IsNullOrWhiteSpace(Model.Name))
+                {
+                    <tr>
+                        <td class="bold" style="width: 160px;">@Html.DisplayNameFor(_ => Model.Name):</td>
+                        <td>@Model.Name</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Format))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Format):</td>
+                        <td>@Model.Format</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Dataset))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Dataset):</td>
+                        <td>@Model.Dataset</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Restriction))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Restriction):</td>
+                        <td>@Model.Restriction</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Location))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Location):</td>
+                        <td>@Model.Location</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.LocationDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.LocationDescription):</td>
+                        <td>@Model.LocationDescription</td>
+                    </tr>
+                }
+                @if (Model.Studies.Any())
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Studies):</td>
+                        <td>
+                            <ul>
+                                @foreach (var item in Model.Studies.OrderBy(s => s.Name))
+                                {
+                                    @if (item.Id > 0 && !string.IsNullOrWhiteSpace(item.Name))
+                                    {
+                                        <li style="padding-left:0;padding-top:0;">
+                                            <a href="@Url.Action("Index", "Study", new { Id = item.Id })">@item.Name</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </table>
+            @if (Model.Elements.Any())
+            {
+                <h4 class="bold">@Html.DisplayNameFor(_ => Model.Elements):</h4>
+                <br />
+                <div id="elementTableContainer">
+                    <table id="tblFileElement" style="border-collapse: separate; border-spacing: 1px;" class="tablesorter sortableTable elementTable">
+                        <thead>
+                            <tr style="background-color: #e4f1fb;">
+                                <th class="bold"><a href="javascript:void(0)">Element Name</a></th>
+                                <th class="bold"><a href="javascript:void(0)">Type</a></th>
+                                <th class="bold"><a href="javascript:void(0)">Label</a></th>
+                                <th class="bold"><a href="javascript:void(0)">Label Extended</a></th>
+                                <th class="bold"><a href="javascript:void(0)">Question</a></th>
+                                <th class="bold"><a href="javascript:void(0)">Value</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Elements.OrderBy(e => e.Name).ThenBy(e => e.Label))
+                            {
+                                @if (!string.IsNullOrWhiteSpace(item.Name) || !string.IsNullOrWhiteSpace(item.Label))
+                                {
+                                    <tr style="vertical-align:text-top; background-color: #EDECE1">
+                                        <td>
+                                            @if (!string.IsNullOrWhiteSpace(item.Name))
+                                            {
+                                                @item.Name
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (!string.IsNullOrWhiteSpace(item.Type))
+                                            {
+                                                @item.Type
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (!string.IsNullOrWhiteSpace(item.Label))
+                                            {
+                                                @item.Label
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (!string.IsNullOrWhiteSpace(item.LabelExtended))
+                                            {
+                                                @item.LabelExtended
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (!string.IsNullOrWhiteSpace(item.Question))
+                                            {
+                                                @item.Question
+                                            }
+                                        </td>
+                                        <!--Invoke ValueViewComponent here-->
+                                        <td>
+                                            <button class="valueAjaxLink" data-id="@item.Id" loaded="false">Load values</button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+    @if (Model.Studies.Any())
+    {
+    <!--tab Study-->
+        <div id="tabStudy">
+            <div id="divStudyDetail">
+                <table style="width: 100%; margin-bottom: 10px" id="tblFileStudy" class="detailTables">
+                    <tr>
+                        <td style="font-weight:bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                            @Html.DisplayNameFor(_ => Model.Studies)
+                            <div style="float:right">
+                                <input role="search" title="Search study" style="width:130px;padding:0;font-size:small" type="text" name="txtStudySearchTerm" id="txtStudySearchTerm" />
+                                <button role="button" class="btn" title="Search Study" id="studySearchBtn">
+                                    Search
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <ul>
+                                @foreach (var item in Model.Studies.OrderBy(c => c.Name))
+                                {
+                                    @if (item.Id > 0 && !string.IsNullOrWhiteSpace(item.Name))
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Study", new { Id = item.Id })">@item.Name</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,300 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model CollectionViewModel
+<div id="ajaxDetailWait"></div>
+<div id="tabs">
+    <ul>
+        @if (Model.Study.Series != default(SeriesStubViewModel) && Model.Study.Series.Id > 0 && !string.IsNullOrWhiteSpace(Model.Study.Series.Name))
+        {
+            <li id="tbSeries">
+                <a href="@Url.Action("Index", "Series" , new { Id = Model.Study.Series.Id })">SERIES</a>
+            </li>
+        }
+        @if (Model.Study != default(StudyStubViewModel) && Model.Study.Id > 0 && !string.IsNullOrWhiteSpace(Model.Study.Name))
+        {
+            <li id="tbStudy">
+                <a href="@Url.Action("Index", "Study" , new { Id = Model.Study.Id })">STUDY</a>
+            </li>
+        }
+        <li id="tbCollection">
+            <a href="#tabCollection">COLLECTION</a>
+        </li>
+        @if (Model.Respondents.Any())
+        {
+            <li id="tbRespondent">
+                <a href="#tabRespondent">RESPONDENT</a>
+            </li>
+        }
+        @if (Model.Packages.Any())
+        {
+            <li id="tbPackage">
+                <a href="#tabPackage">PACKAGE</a>
+            </li>
+        }
+    </ul>
+    <div id="tabCollection">
+        <div id="divCollection">
+            <table style="width: 100%; margin-bottom: 10px" id="tblCollection" class="detailTables">
+                <tr>
+                    <td style="font-weight:bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                        @Model.Name
+                        <div style="float:right">
+                            <input role="search" title="Search collection" style="width:130px;padding:0;font-size:small" type="text" name="txtCollectionSearchTerm" id="txtCollectionSearchTerm" />
+                            <button role="button" class="btn" title="Search Collection" id="collectionSearchBtn">
+                                Search
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                </tr>
+                @if (Model.Study != default(StudyStubViewModel) && Model.Study.Id > 0 && !string.IsNullOrWhiteSpace(Model.Study.Name))
+                {
+                    <tr>
+                        <td class="bold" style="width: 160px;">@Html.DisplayNameFor(i => Model.Study):</td>
+                        <td><a href="@Url.Action(" Index", "Study" , new { Id = Model.Study.Id })">@Model.Study.Name</a></td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Type))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Type):</td>
+                        <td>@Model.Type</td>
+                    </tr>
+                }
+                @if (Model.Cost.Value >= 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Cost):</td>
+                        <td>@Model.Cost.Value.ToString("C")</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.CostYears))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.CostYears):</td>
+                        <td>@Model.CostYears</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.CostDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.CostDescription):</td>
+                        <td>@Model.CostDescription</td>
+                    </tr>
+                }
+                @if (Model.RecruitmentStartDateEstimated.HasValue)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.RecruitmentStartDateEstimated):</td>
+                        <td>@Model.RecruitmentStartDateEstimated.Value.ToString("d")</td>
+                    </tr>
+                }
+                @if (Model.StartDateEstimated.HasValue)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.StartDateEstimated):</td>
+                        <td>@Model.StartDateEstimated.Value.ToString("d")</td>
+                    </tr>
+                }
+                @if (Model.StartDate.HasValue)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.StartDate):</td>
+                        <td>@Model.StartDate.Value.ToString("d")</td>
+                    </tr>
+                }
+                @if (Model.EndDateEstimated.HasValue)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.EndDateEstimated):</td>
+                        <td>@Model.EndDateEstimated.Value.ToString("d")</td>
+                    </tr>
+                }
+                @if (Model.EndDate.HasValue)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.EndDate):</td>
+                        <td>@Model.EndDate.Value.ToString("d")</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.DateDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.DateDescription):</td>
+                        <td>@Model.DateDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.DataCollectionAgentType))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.DataCollectionAgentType):</td>
+                        <td>@Model.DataCollectionAgentType</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.DataCollectionAgentPrimary))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.DataCollectionAgentPrimary):</td>
+                        <td><br />@Model.DataCollectionAgentPrimary</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.DataCollectionAgentNonPrimary))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.DataCollectionAgentNonPrimary):</td>
+                        <td><br />@Model.DataCollectionAgentNonPrimary</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ConfidentialityLaw))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ConfidentialityLaw):</td>
+                        <td>@Model.ConfidentialityLaw</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.VoluntaryConfidentialityStatement))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.VoluntaryConfidentialityStatement):</td>
+                        <td><br />@Model.VoluntaryConfidentialityStatement</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.VoluntaryConfidentialityStatementRespondent))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.VoluntaryConfidentialityStatementRespondent):</td>
+                        <td><br />@Model.VoluntaryConfidentialityStatementRespondent</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ExperimentDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ExperimentDescription):</td>
+                        <td>@Model.ExperimentDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ExperimentResults))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ExperimentResults):</td>
+                        <td>@Model.ExperimentResults</td>
+                    </tr>
+                }
+                @if (Model.Respondents.Any())
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Respondents):</td>
+                        <td>
+                            <ul style="padding-left:10px; margin-top:0;">
+                                @foreach (var r in Model.Respondents.OrderBy(r => r.Description))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Index", "Respondent", new { Id = r.Id })">@r.Description</a>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+                @if (Model.Packages.Any())
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Packages):</td>
+                        <td>
+                            <ul style="padding-left:10px; margin-top:0;">
+                                @foreach (var p in Model.Packages.OrderBy(p => p.ReferenceNumber))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Index", "Package", new { Id = p.Id })">>@p.ReferenceNumber</a>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    @if (Model.Respondents.Any())
+    {
+    <!--tab Respondent-->
+        <div id="tabRespondent">
+            <div id="divRespondentDetail">
+                <table style="width: 100%; margin-bottom: 10px" id="tblCollectionRespondent" class="detailTables">
+                    <tr>
+                        <td style="font-weight:bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                            @Html.DisplayNameFor(_ => Model.Respondents)
+                            <div style="float:right">
+                                <input role="search" title="Search respondent" style="width:130px;padding:0;font-size:small" type="text" name="txtRespondentSearchTerm" id="txtRespondentSearchTerm" />
+                                <button class="btn" role="button" title="Search Respondent" id="respondentSearchBtn">
+                                    Search
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <ul>
+                                @foreach (var r in Model.Respondents.OrderBy(r => r.Description))
+                                {
+                                    <li>
+                                        <p>
+                                            <a href="@Url.Action("Index", "Respondent", new { Id = r.Id })">@r.Description</a>
+                                        </p>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Model.Packages.Any())
+    {
+    <!--tab Package-->
+        <div id="tabPackage">
+            <div id="divPackageDetail">
+                <table style="width: 100%; margin-bottom: 10px" id="tblCollectionPackage" class="detailTables">
+                    <tr>
+                        <td style="font-weight: bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                            @Html.DisplayNameFor(_ => Model.Packages)
+                            <div style="float:right">
+                                <input role="search" title="Search package" style="width:130px;padding:0;font-size:small" type="text" name="txtPackageSearchTerm" id="txtPackageSearchTerm" />
+                                <button class="btn" role="button" title="Search Package" id="packageSearchBtn">
+                                    Search
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <ul>
+                                @foreach (var p in Model.Packages.OrderBy(p => p.ReferenceNumber))
+                                {
+                                    <li>
+                                        <p>
+                                            <a href="@Url.Action("Index", "Package", new { Id = p.Id })">@p.ReferenceNumber</a>
+                                        </p>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+</div>

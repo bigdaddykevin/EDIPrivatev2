@@ -1,0 +1,169 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.showAdvanced = true;
+    ViewBag.showHelp = false;
+}
+
+<div id="ajaxSearchWait"></div>
+<div class="containerSearch">
+    <div id="divSearch">
+        <div class="message" id="emptySearchMessage" style="width: 300px;display:none;">Please enter a search term in the text box located on the upper right-hand corner of the toolbar.</div>
+        @if (ViewBag.showAdvanced && !ViewBag.showHelp)
+        {
+            <div id="searchTabs">
+                <ul>
+                    <li id="searchtabseries"><a href="#searchSeries">SERIES</a></li>
+                    <li id="searchtabstudy"><a href="#searchStudy">STUDY</a></li>
+                    <li id="searchtabcollection"><a href="#searchCollection">COLLECTION</a></li>
+                    <li id="searchtabsrespondent"><a href="#searchRespondent">RESPONDENT</a></li>
+                    <li id="searchtabfile"><a href="#searchFile">FILE</a></li>
+                    <li id="searchtabpackage"><a href="#searchPackage">PACKAGE</a></li>
+                </ul>
+                <!--Series-->
+                <div id="searchSeries">
+                    <div class="roundedBox">
+                        <div class="wwwText"><strong>Search in SERIES:</strong></div>
+                        <div class="search-default-group">
+                            @Html.DropDownList("series_search_default_key", ViewData["seriesKeys"] as SelectList, new { @class = "search-dropdown" })
+                            <input type="text" size="50" height="30" title="series search term default" name="series_search_default_term" id="series_search_default_term" />
+                        </div>
+                        <div class="input-group series_search">
+                            @Html.DropDownList("series_search_operator_1", ViewData["cmp"] as SelectList, new { @class = "search-key-dropdown" })
+                            <div class="input-group">
+                                @Html.DropDownList("series_search_key_1", ViewData["seriesKeys"] as SelectList, new { @class = "search-dropdown" })
+                                <input type="text" size="50" height="30" title="series search term 1" name="series_search_term_1" id="series_search_term_1" />
+                            </div>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="addNewSeriesField" title="Add field" class="btn addFieldBtn">Add Field</button>
+                            <button id="removeSeriesField" title="Remove a field" class="btn removeFieldBtn">Remove Field</button>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="searchSeriesBtn" title="Search inventory" class="btnSearch advanceSearchBtn" style="font-family: 'Open Sans',sans-serif !important; font-size: 1em;">SEARCH</button>
+                        </div>
+                    </div>
+                </div>
+                <!--Study-->
+                <div id="searchStudy">
+                    <div class="roundedBox">
+                        <div class="wwwText"><strong>Search In STUDY:</strong></div>
+                        <div class="search-default-group">
+                            @Html.DropDownList("study_search_default_key", ViewData["studyKeys"] as SelectList, new { @class = "search-dropdown" })
+                            <input type="text" size="50" height="30" name="study_search_default_term" title="study search term default" id="study_search_default_term" />
+                        </div>
+                        <div class="input-group study_search">
+                            @Html.DropDownList("study_search_operator_1", ViewData["cmp"] as SelectList, new { @class = "search-key-dropdown" })
+                            <div class="input-group">
+                                @Html.DropDownList("study_search_key_1", ViewData["studyKeys"] as SelectList, new { @class = "search-dropdown" })
+                                <input type="text" size="50" height="30" name="study_search_term_1" title="study search term 1" id="study_search_term_1" />
+                            </div>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="addNewStudyField" title="Add field" class="btn addFieldBtn">Add Field</button>
+                            <button id="removeStudyField" title="Remove a field" class="btn removeFieldBtn">Remove Field</button>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="searchStudyBtn" title="Search inventory" class="btnSearch advanceSearchBtn" style="font-family: 'Open Sans',sans-serif !important; font-size: 1em;">SEARCH</button>
+                        </div>
+                    </div>
+                </div>
+                <!--Collection-->
+                <div id="searchCollection">
+                    <div class="roundedBox">
+                        <div class="wwwText"><strong>Search In COLLECTION:</strong></div>
+                        <div class="search-default-group">
+                            @Html.DropDownList("collection_search_default_key", ViewData["collectionKeys"] as SelectList, new { @class = "search-dropdown" })
+                            <input type="text" size="50" height="30" name="collection_search_default_term" title="collection search term default" id="collection_search_default_term" />
+                        </div>
+                        <div class="input-group collection_search">
+                            @Html.DropDownList("collection_search_operator_1", ViewData["cmp"] as SelectList, new { @class = "search-key-dropdown" })
+                            <div class="input-group">
+                                @Html.DropDownList("collection_search_key_1", ViewData["collectionKeys"] as SelectList, new { @class = "search-dropdown" })
+                                <input type="text" size="50" height="30" name="collection_search_term_1" title="collection search term 1" id="collection_search_term_1" />
+                            </div>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="addNewCollectionField" title="Add field" class="btn addFieldBtn">Add Field</button>
+                            <button id="removeCollectionField" title="Remove a field" class="btn removeFieldBtn">Remove Field</button>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="searchCollectionBtn" title="Search inventory" class="btnSearch advanceSearchBtn" style="font-family: 'Open Sans',sans-serif !important; font-size: 1em;">SEARCH</button>
+                        </div>
+                    </div>
+                </div>
+                <!--File-->
+                <div id="searchFile">
+                    <div class="roundedBox">
+                        <div class="wwwText"><strong>Search In FILE:</strong></div>
+                        <div class="search-default-group">
+                            @Html.DropDownList("file_search_default_key", ViewData["fileKeys"] as SelectList, new { @class = "search-dropdown" })
+                            <input type="text" size="50" height="30" name="file_search_default_term" title="file search term default" id="file_search_default_term" />
+                        </div>
+                        <div class="input-group file_search">
+                            @Html.DropDownList("file_search_operator_1", ViewData["cmp"] as SelectList, new { @class = "search-key-dropdown" })
+                            <div class="input-group">
+                                @Html.DropDownList("file_search_key_1", ViewData["fileKeys"] as SelectList, new { @class = "search-dropdown" })
+                                <input type="text" size="50" height="30" name="file_search_term_1" title="file search term 1" id="file_search_term_1" />
+                            </div>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="addNewFileField" title="Add field" class="btn addFieldBtn">Add Field</button>
+                            <button id="removeFileField" title="Remove a field" class="btn removeFieldBtn">Remove Field</button>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="searchFileBtn" title="Search inventory" class="btnSearch advanceSearchBtn" style="font-family: 'Open Sans',sans-serif !important; font-size: 1em;">SEARCH</button>
+                        </div>
+                    </div>
+                </div>
+                <!--Package-->
+                <div id="searchPackage">
+                    <div class="roundedBox">
+                        <div class="wwwText"><strong>Search In PACKAGE:</strong></div>
+                        <div class="search-default-group">
+                            @Html.DropDownList("package_search_default_key", ViewData["packageKeys"] as SelectList, new { @class = "search-dropdown" })
+                            <input type="text" size="50" height="30" name="package_search_default_term" title="package search term default" id="package_search_default_term" />
+                        </div>
+                        <div class="input-group package_search">
+                            @Html.DropDownList("package_search_operator_1", ViewData["cmp"] as SelectList, new { @class = "search-key-dropdown" })
+                            <div class="input-group">
+                                @Html.DropDownList("package_search_key_1", ViewData["packageKeys"] as SelectList, new { @class = "search-dropdown" })
+                                <input type="text" size="50" height="30" name="package_search_term_1" title="package search term 1" id="package_search_term_1" />
+                            </div>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="addNewPackageField" title="Add field" class="btn addFieldBtn">Add Field</button>
+                            <button id="removePackageField" title="Remove a field" class="btn removeFieldBtn">Remove A Field</button>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="searchPackageBtn" title="Search inventory" class="btnSearch advanceSearchBtn" style="font-family: 'Open Sans',sans-serif !important; font-size: 1em;">SEARCH</button>
+                        </div>
+                    </div>
+                </div>
+                <!--Respondent-->
+                <div id="searchRespondent">
+                    <div class="roundedBox">
+                        <div class="wwwText"><strong>Search In RESPONDENT:</strong></div>
+                        <div class="search-default-group">
+                            @Html.DropDownList("respondent_search_default_key", ViewData["respondentKeys"] as SelectList, new { @class = "search-dropdown" })
+                            <input type="text" size="50" height="30" name="respondent_search_default_term" title="respondent search term default" id="respondent_search_default_term" />
+                        </div>
+                        <div class="input-group respondent_search">
+                            @Html.DropDownList("respondent_search_operator_1", ViewData["cmp"] as SelectList, new { @class = "search-key-dropdown" })
+                            <div class="input-group">
+                                @Html.DropDownList("respondent_search_key_1", ViewData["respondentKeys"] as SelectList, new { @class = "search-dropdown" })
+                                <input type="text" size="50" height="30" name="respondent_search_term_1" title="respondent search term 1" id="respondent_search_term_1" />
+                            </div>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="addNewRespondentField" title="Add field" class="btn addFieldBtn">Add Field</button>
+                            <button id="removeRespondentField" title="Remove a field" class="btn removeFieldBtn">Remove A Field</button>
+                        </div>
+                        <div class="control-btn-group">
+                            <button id="searchRespondentBtn" title="Search inventory" class="btnSearch advanceSearchBtn" style="font-family: 'Open Sans',sans-serif !important; font-size: 1em;">SEARCH</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,552 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model StudyViewModel
+<div id="ajaxDetailWait"></div>
+<div id="tabs">
+    <ul>
+        @if (Model.Series != default(SeriesStubViewModel) && Model.Series.Id > 0 && !string.IsNullOrWhiteSpace(Model.Series.Name))
+        {
+            <li id="tbSeries">
+                <a href="@Url.Action("Index", "Series", new { Id = Model.Series.Id })">SERIES</a>
+            </li>
+        }
+        <li id="tbStudy">
+            <a href="#tabStudy">STUDY</a>
+        </li>
+        @if (Model.Collections.Any())
+        {
+            <li id="tbCollection">
+                <a href="#tabCollection">COLLECTION</a>
+            </li>
+        }
+        @if (Model.Files.Any())
+        {
+            <li id="tbFile">
+                <a href="#tabFile">FILE</a>
+            </li>
+        }
+    </ul>
+    <div id="tabStudy">
+        <div id="divStudy">
+            <table style="width: 100%; margin-bottom: 10px" id="tblStudies" class="detailTables">
+                <tr>
+                    <td style="font-weight:bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                        @Model.Name
+                        <div style="float:right">
+                            <input role="search" title="Search study" style="width:130px;padding:0;font-size:small" type="text" name="txtStudySearchTerm" id="txtStudySearchTerm" />
+                            <button role="button" class="btn" title="Search Study" id="studySearchBtn">
+                                Search
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                </tr>
+                @if (!string.IsNullOrWhiteSpace(Model.Symbol))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Symbol):</td>
+                        <td>@Model.Symbol</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName1))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName1):</td>
+                        <td>@Model.OldName1</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName1Symbol))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName1Symbol):</td>
+                        <td>@Model.OldName1Symbol</td>
+                    </tr>
+
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName1Duration))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName1Duration):</td>
+                        <td>@Model.OldName1Duration</td>
+                    </tr>
+
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName2))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName2):</td>
+                        <td>@Model.OldName2</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName2Symbol))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName2Symbol):</td>
+                        <td>@Model.OldName2Symbol</td>
+                    </tr>
+
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.OldName2Duration))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.OldName2Duration):</td>
+                        <td>@Model.OldName2Duration</td>
+                    </tr>
+
+                }
+                @if (Model.Series != default(SeriesStubViewModel) && Model.Series.Id > 0 && !string.IsNullOrWhiteSpace(Model.Series.Name))
+                {
+                    <tr>
+                        <td class="bold">Parent:</td>
+                        <td>
+                            <a href="@Url.Action("Index", "Series" , new { Id = Model.Series.Id })">@Model.Series.Name</a>
+                        </td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Investigator))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Investigator):</td>
+                        <td>@Model.Investigator</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.BureauCode))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.BureauCode):</td>
+                        <td>@Model.BureauCode</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ProgramCode))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ProgramCode):</td>
+                        <td>@Model.ProgramCode</td>
+                    </tr>
+                }
+                @if (Model.Website != default(Uri) && !string.IsNullOrWhiteSpace(Model.Website.ToString()))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Website):</td>
+                        <td><a href="@Model.Website">@Model.Website.ToString()</a></td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Keywords))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Keywords):</td>
+                        <td>@Model.Keywords</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Description):</td>
+                        <td>@Model.Description</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.AuthorizingLaw))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.AuthorizingLaw):</td>
+                        <td>@Model.AuthorizingLaw</td>
+                    </tr>
+                }
+                @if (Model.TotalCost.HasValue && Model.TotalCost.Value >= 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.TotalCost):</td>
+                        <td>@Model.TotalCost.Value.ToString("C")</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.TotalCostYears))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.TotalCostYears):</td>
+                        <td>@Model.TotalCostYears</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.TotalCostDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.TotalCostDescription):</td>
+                        <td>@Model.TotalCostDescription</td>
+                    </tr>
+                }
+                @if (Model.Universe || Model.Sample || Model.Longitudinal || Model.CrossSectional || Model.ProgramMonitoring || Model.GranteeReporting)
+                {
+                    <tr>
+                        <td class="bold">Collection Type:</td>
+                        <td class="inline-result-td">
+                            @{ var types = new List<string>(); }
+                            @if (Model.Universe == true)
+                            {
+                                types.Add(Html.DisplayNameFor(_ => Model.Universe));
+                            }
+                            @if (Model.Sample == true)
+                            {
+                                types.Add(Html.DisplayNameFor(_ => Model.Sample));
+                            }
+                            @if (Model.Longitudinal == true)
+                            {
+                                types.Add(Html.DisplayNameFor(_ => Model.Longitudinal));
+                            }
+                            @if (Model.CrossSectional == true)
+                            {
+                                types.Add(Html.DisplayNameFor(_ => Model.CrossSectional));
+                            }
+                            @if (Model.ProgramMonitoring == true)
+                            {
+                                types.Add(Html.DisplayNameFor(_ => Model.ProgramMonitoring));
+                            }
+                            @if (Model.GranteeReporting == true)
+                            {
+                                types.Add(Html.DisplayNameFor(_ => Model.GranteeReporting));
+                            }
+                            @Html.Raw(string.Join("; ", types))
+                            @{ types = null; }
+                        </td>
+                    </tr>
+                                }
+                @if (Model.Voluntary || Model.Mandatory || Model.RequiredForBenefits)
+                {
+                    <tr>
+                        <td class="bold">Collection Requirement:</td>
+                        <td>
+                            @{ var requirements = new List<string>(); }
+                            @if (Model.Voluntary == true)
+                            {
+                                requirements.Add(Html.DisplayNameFor(_ => Model.Voluntary));
+                            }
+                            @if (Model.Mandatory == true)
+                            {
+                                requirements.Add(Html.DisplayNameFor(_ => Model.Mandatory));
+                            }
+                            @if (Model.RequiredForBenefits == true)
+                            {
+                                requirements.Add(Html.DisplayNameFor(_ => Model.RequiredForBenefits));
+                            }
+                            @Html.Raw(string.Join("; ", requirements))
+                            @{ requirements = null; }
+                        </td>
+                    </tr>
+                                }
+                @if (!string.IsNullOrWhiteSpace(Model.RequirementDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.RequirementDescription):</td>
+                        <td><br />@Model.RequirementDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.RequirementReason))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.RequirementReason):</td>
+                        <td><br />@Model.RequirementReason</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.SORN))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.SORN):</td>
+                        <td>@Model.SORN</td>
+                    </tr>
+                }
+                @if (Model.SORNUrl != default(Uri) && !string.IsNullOrWhiteSpace(Model.SORNUrl.ToString()))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.SORNUrl):</td>
+                        <td><a href="@Model.SORNUrl">@Model.SORNUrl.ToString()</a></td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ConfidentialityRestrictions))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ConfidentialityRestrictions):</td>
+                        <td>@Model.ConfidentialityRestrictions</td>
+                    </tr>
+                }
+                @if (Model.PII_DI == true)
+                {
+                    <tr>
+                        <td class="bold">Collects Personally Identifiable Information with Direct Identifiers (PII-DI):</td>
+                        <td>Yes</td>
+                    </tr>
+                }
+                @if (Model.PIA == true)
+                {
+                    <tr>
+                        <td class="bold">Conducted a Privacy Impact Assessment (PIA):</td>
+                        <td>Yes</td>
+                    </tr>
+                }
+                @if (Model.DataCouldBePublic == true)
+                {
+                    <tr>
+                        <td class="bold">Could Data Ever Be Publicly Released:</td>
+                        <td>Yes</td>
+                    </tr>
+                }
+                @if (Model.PublicationStatisticsDate.HasValue)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PublicationStatisticsDate):</td>
+                        <td>@Model.PublicationStatisticsDate.Value.ToString("d")</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.PublicationStatisticsType))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PublicationStatisticsType):</td>
+                        <td>@Model.PublicationStatisticsType</td>
+                    </tr>
+                }
+                @if (Model.PublicationStatisticsUrl != default(Uri) && !string.IsNullOrWhiteSpace(Model.PublicationStatisticsUrl.ToString()))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PublicationStatisticsUrl):</td>
+                        <td><a href="@Model.PublicationStatisticsUrl">@Model.PublicationStatisticsUrl.ToString()</a></td>
+                    </tr>
+                }
+                @if (Model.PublicationDataDate.HasValue)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(i => Model.PublicationDataDate):</td>
+                        <td>@Model.PublicationDataDate.Value.ToString("d")</td>
+                    </tr>
+                }
+                @if (Model.PublicationDataUrl != default(Uri) && !string.IsNullOrWhiteSpace(Model.PublicationDataUrl.ToString()))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PublicationDataUrl):</td>
+                        <td><a href="@Model.PublicationDataUrl">@Model.PublicationDataUrl.ToString()</a></td>
+                    </tr>
+                }
+                @if (Model.PublicationRestrictedUseDataDate.HasValue)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PublicationRestrictedUseDataDate):</td>
+                        <td>@Model.PublicationRestrictedUseDataDate.Value.ToString("d")</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.SubjectPopulation))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.SubjectPopulation):</td>
+                        <td>@Model.SubjectPopulation</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.SubjectPopulationDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.SubjectPopulationDescription):</td>
+                        <td><br />@Model.SubjectPopulationDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.DataLevelsAvailable))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.DataLevelsAvailable):</td>
+                        <td>@Model.DataLevelsAvailable</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.DataLevelPublic))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.DataLevelPublic):</td>
+                        <td>@Model.DataLevelPublic</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.DataLevelDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.DataLevelDescription):</td>
+                        <td>@Model.DataLevelDescription</td>
+                    </tr>
+                }
+                @if (Model.PreviousStudy != default(StudyStubViewModel) && Model.PreviousStudy.Id > 0 && !string.IsNullOrWhiteSpace(Model.PreviousStudy.Name))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PreviousStudy):</td>
+                        <td>
+                            <a href="@Url.Action("Index", "Study" , new { Id = Model.PreviousStudy.Id })">@Model.PreviousStudy.Name</a>
+                        </td>
+                    </tr>
+                }
+                @if (Model.Contacts.Any())
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Contacts):</td>
+                        <td>
+                            <ol style="padding-left:20px; margin-top:0;">
+                                @foreach (var item in Model.Contacts.OrderBy(c => c.SortOrder))
+                                {
+                                    @if (!string.IsNullOrWhiteSpace(item.FirstName) && !string.IsNullOrWhiteSpace(item.LastName))
+                                    {
+                                        <li>
+                                            @string.Format("{0} {1}", item.FirstName, item.LastName)
+                                            @if (!string.IsNullOrWhiteSpace(item.EmailAddress))
+                                            {
+                                                <br />
+                                                @Html.DisplayNameFor(_ => item.EmailAddress)<text>: </text>@item.EmailAddress
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(item.TelephoneNumber))
+                                            {
+                                                <br />
+                                                @Html.DisplayNameFor(_ => item.TelephoneNumber)<text>: </text>@item.TelephoneNumber
+                                            }
+                                        </li>
+                                    }
+                                }
+                            </ol>
+                        </td>
+                    </tr>
+                }
+                @if (Model.Collections.Any())
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Collections):</td>
+                        <td>
+                            <ul style="padding-left:10px; margin-top:0;">
+                                @foreach (var item in Model.Collections.OrderBy(c => c.Name))
+                                {
+                                    @if (item.Id > 0 && !string.IsNullOrWhiteSpace(item.Name))
+                                    {
+                                        <li>
+                                            <a href="@Url.Action(" Index", "Collection" , new { Id = item.Id })">@item.Name</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+                @if (Model.Files.Any())
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Files):</td>
+                        <td>
+                            <ul>
+                                @foreach (var item in Model.Files.OrderBy(f => f.Name))
+                                {
+                                    @if (item.Id != default(Guid) && !string.IsNullOrWhiteSpace(item.Name))
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "File", new { Id = item.Id })">@item.Name</a>
+                                            @if (!string.IsNullOrWhiteSpace(item.Format))
+                                            {
+                                                <br />
+                                                @Html.DisplayNameFor(_ => item.Format)<text>: </text>@item.Format
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(item.Restriction))
+                                            {
+                                                <br />
+                                                @Html.DisplayNameFor(_ => item.Restriction)<text>: </text>@item.Restriction
+                                            }
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    @if (Model.Collections.Any())
+    {
+    <!--tab collection-->
+        <div id="tabCollection">
+            <div id="divCollectionDetail">
+                <table style="width: 100%; margin-bottom: 10px" id="tblStudyCollection" class="detailTables">
+                    <tr>
+                        <td style="font-weight: bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                            @Html.DisplayNameFor(_ => Model.Collections)
+                            <div style="float:right">
+                                <input role="search" title="Search collection" style="width:130px;padding:0;font-size:small" type="text" name="txtCollectionSearchTerm" id="txtCollectionSearchTerm" />
+                                <button role="button" class="btn" title="Search Collection" id="collectionSearchBtn">
+                                    Search
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <ul>
+                                @foreach (var item in Model.Collections.OrderBy(c => c.Name))
+                                {
+                                    @if (item.Id > 0 && !string.IsNullOrWhiteSpace(item.Name))
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Collection", new { Id = item.Id })">@item.Name</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Model.Files.Any())
+    {
+    <!--tab File-->
+        <div id="tabFile">
+            <div id="divFileDetail">
+                <table style="width: 100%; margin-bottom: 10px" id="tblCollectionFile" class="detailTables">
+                    <tr>
+                        <td style="font-weight: bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                            @Html.DisplayNameFor(_ => Model.Files)
+                            <div style="float:right">
+                                <input role="search" title="Search file" style="width:130px;padding:0;font-size:small" type="text" name="txtFileSearchTerm" id="txtFileSearchTerm" />
+                                <button role="button" class="btn" title="Search File" id="fileSearchBtn">
+                                    Search
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <ul>
+                                @foreach (var item in Model.Files.OrderBy(f => f.Name))
+                                {
+                                    @if (!string.IsNullOrWhiteSpace(item.Name))
+                                    {
+                                        <li>
+                                            <p>
+                                                <a href="@Url.Action("Index", "File", new { Id = item.Id })">@item.Name</a>
+                                                @if (!string.IsNullOrWhiteSpace(item.Format))
+                                                {
+                                                    <br />
+                                                    @Html.DisplayNameFor(_ => item.Format)<text>: </text>@item.Format
+                                                }
+                                                @if (!string.IsNullOrWhiteSpace(item.Restriction))
+                                                {
+                                                    <br />
+                                                    @Html.DisplayNameFor(_ => item.Restriction)<text>: </text>@item.Restriction
+                                                }
+                                            </p>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+</div>

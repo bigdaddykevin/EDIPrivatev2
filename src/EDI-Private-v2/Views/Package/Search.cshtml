@@ -1,0 +1,104 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var queryStr = new List<string>();
+    if (ViewBag.queryItems.Length > 3)
+    {
+        var packageKeys = new Dictionary<string, string>()
+        {
+            { "title", "Title" },
+            { "icras", "ICRAS" },
+            { "edics", "EDICS" },
+            { "icrreferencenumber", "ICR Reference Number" },
+            { "ombcontrolnumber", "OMB Control Number" },
+            { "cfda", "CFDA" },
+            { "keywords", "Keywords" },
+            { "abstract", "Abstract" },
+            { "issuedate", "Issue Date" },
+            { "expirationdate", "Expiration Date" },
+            { "noticetype", "Notice Type" },
+            { "termsofclearance", "Terms of Clearance" },
+            { "numberrespondents", "Number of Respondents" },
+            { "numberresponses", "Number of Responses" },
+            { "percentcollectedelectronically", "Percent Collected Electronically" },
+            { "burdentotal", "Total Burden" },
+            { "burdenchange", "Burden Change" },
+            { "burdenadjustment", "Burden Adjustment" },
+            { "burdenexplanation", "Burden Change Explanation" },
+            { "publiccomment", "Public Comment Document" },
+            { "publiccommentresponse", "Public Comment Response Document" },
+            { "ombpassback", "OMB Passback Document" },
+            { "authorizinglawcited", "Authorizing Law Cited" },
+            { "authorizinglawtext", "Authorizing Law Text" },
+            { "contractorconfidentialityformlocation", "Contractor Confidentiality Form Location" },
+            { "collections", "Collection Names" }
+        };
+
+        int i = 3;
+        while (i < ViewBag.queryItems.Length)
+        {
+            if (ViewBag.queryItems[i - 1] == "cmp")
+            {
+                queryStr.Add(ViewBag.queryItems[i].ToUpper());
+            }
+            else
+            {
+                queryStr.Add(packageKeys[ViewBag.queryItems[i - 1]] + " = " + ViewBag.queryItems[i]);
+            }
+
+            i = i + 2;
+        }
+    }
+}
+
+@model IEnumerable<PackageStubViewModel>
+<div class="containerSearch">
+    <div id="divSearch">
+        <div id="aSearchCriteria">
+            <div id="divSearchSteps">
+                <div class="roundedBox">
+                    <span class="searchStep">Search in PACKAGE with:</span>
+                    <p style="text-align:left; margin-left:30px;">
+                        @if (!string.IsNullOrWhiteSpace(queryStr.FirstOrDefault()))
+                        {
+                            foreach (var item in queryStr)
+                            {
+                                <span style="margin-right:10px;">@item</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="divSearchResults">
+            <div class="searchResults">
+                <span style="margin:0 10px 0 10px;float: left;" class="ui-icon ui-icon-triangle-1-e icon orange"></span>
+                @Model.Count() PACKAGE @if (Model.Count() == 1)
+                { <text>matches</text> }
+                else
+                { <text>match</text> } your query
+            </div>
+            <div class="containerMainSearchResults">
+                @if (Model.Any())
+                {
+                    <ul>
+                        @foreach (var item in Model.OrderBy(p => p.ReferenceNumber))
+                        {
+                            @if (item != default(PackageStubViewModel) && item.Id != 0 && !string.IsNullOrWhiteSpace(item.ReferenceNumber))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Package", new { Id = item.Id })">@item.ReferenceNumber</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="emptyResult">Nothing matches your search term.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

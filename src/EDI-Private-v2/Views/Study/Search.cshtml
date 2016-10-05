@@ -1,0 +1,129 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var queryStr = new List<string>();
+    if (ViewBag.queryItems.Length > 3)
+    {
+        var studyKeys = new Dictionary<string, string>()
+        {
+            { "name", "Name" },
+            { "symbol", "Symbol" },
+            { "oldname1", "Old Name 1" },
+            { "oldname1symbol", "Old Name 1 Symbol" },
+            { "oldname1duration", "Old Name 1 Duration" },
+            { "oldname2", "Old Name 2" },
+            { "oldname2symbol", "Old Name 2 Symbol" },
+            { "oldname2duration", "Old Name 2 Duration" },
+            { "parent", "Parent Series Name" },
+            { "investigator", "Investigator" },
+            { "bureaucode", "Bureau Code" },
+            { "programcode", "Program Code" },
+            { "website", "Website" },
+            { "keywords", "Keywords" },
+            { "description", "Description" },
+            { "authorizinglaw", "Authorizing Law" },
+            { "totalcost", "Total Cost" },
+            { "totalcostyears", "Total Cost Years" },
+            { "totalcostdescription", "Total Cost Description" },
+            { "universe", "Universe Collection" },
+            { "sample", "Sample Collection" },
+            { "longitudinal", "Longitudinal Collection" },
+            { "crosssectional", "Cross-Sectional Collection" },
+            { "programmonitoring", "Program Monitoring Collection" },
+            { "granteereporting", "Grantee Reporting Collection" },
+            { "voluntary", "Voluntary Collection" },
+            { "mandatory", "Mandatory Collection" },
+            { "requiredforbenefits", "Required for Benefits Collection" },
+            { "requirementdescription", "Collection Requirement Description" },
+            { "requirementreason", "Collection Requirement Reason" },
+            { "sorn", "SORN" },
+            { "sornurl", "SORN URL" },
+            { "confidentialityrestrictions", "Confidentiality Restrictions" },
+            { "pii_di", "PII-DI" },
+            { "pia", "PIA" },
+            { "datacouldbepublic", "Data Could Be Public" },
+            { "publicationstatisticstype", "Statistics Publication Type" },
+            { "publicationstatisticsurl", "Statistics Publication URL" },
+            { "publicationstatisticsdate", "Statistics Publication Date" },
+            { "publicationdataurl", "Data Publication URL" },
+            { "publicationdatadate", "Data Publication Date" },
+            { "publicationrestrictedusedatadate", "Restricted-Use Data Publication Date" },
+            { "subjectpopulation", "Subject Population" },
+            { "subjectpopulationdescription", "Subject Population Description" },
+            { "datalevelsavailable", "Data Levels Available" },
+            { "datalevelpublic", "Public Data Level" },
+            { "dataleveldescription", "Data Level Description" },
+            { "previousstudy", "Previous Study Name" },
+            { "contacts", "Contact Names" },
+            { "collections", "Collection Names" },
+            { "files", "File Names" }
+        };
+
+        int i = 3;
+        while (i < ViewBag.queryItems.Length)
+        {
+            if (ViewBag.queryItems[i - 1] == "cmp")
+            {
+                queryStr.Add(ViewBag.queryItems[i].ToUpper());
+            }
+            else
+            {
+                queryStr.Add(studyKeys[ViewBag.queryItems[i - 1]] + " = " + ViewBag.queryItems[i]);
+            }
+
+            i = i + 2;
+        }
+    }
+}
+
+@model IEnumerable<StudyStubViewModel>
+<div class="containerSearch">
+    <div id="divSearch">
+        <div id="aSearchCriteria">
+            <div id="divSearchSteps">
+                <div class="roundedBox">
+                    <span class="searchStep">Search in STUDY with:</span>
+                    <p style="text-align:left; margin-left:30px;">
+                        @if (!string.IsNullOrWhiteSpace(queryStr.FirstOrDefault()))
+                        {
+                            @foreach (var item in queryStr)
+                            {
+                                <span style="margin-right:10px;">@item</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="divSearchResults">
+            <div class="searchResults">
+                <span style="margin:0 10px 0 10px;float: left;" class="ui-icon ui-icon-triangle-1-e icon orange"></span>
+                @Model.Count() STUDY @if (Model.Count() == 1)
+                { <text>matches</text> }
+                else
+                { <text>match</text> } your query
+            </div>
+            <div class="containerMainSearchResults">
+                @if (Model.Any())
+                {
+                    <ul>
+                        @foreach (var item in Model.OrderBy(s => s.Name))
+                        {
+                            @if (item != default(StudyStubViewModel) && item.Id != 0 && !string.IsNullOrWhiteSpace(item.Name))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Study", new { Id = item.Id })">@item.Name</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="emptyResult">Nothing matches your search term.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

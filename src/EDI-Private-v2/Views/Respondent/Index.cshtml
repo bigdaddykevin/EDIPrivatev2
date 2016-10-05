@@ -1,0 +1,389 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model RespondentViewModel
+<div id="ajaxDetailWait"></div>
+<div id="tabs">
+    <ul>
+        @if (Model.Collection.Study.Series != default(SeriesStubViewModel) && Model.Collection.Study.Series.Id > 0 && !string.IsNullOrWhiteSpace(Model.Collection.Study.Series.Name))
+        {
+            <li id="tbSeries">
+                <a href="@Url.Action("Index", "Series", new { Id = Model.Collection.Study.Series.Id })">SERIES</a>
+            </li>
+        }
+        @if (Model.Collection.Study != default(StudyStubViewModel) && Model.Collection.Study.Id > 0 && !string.IsNullOrWhiteSpace(Model.Collection.Study.Name))
+        {
+            <li id="tbStudy">
+                <a href="@Url.Action("Index", "Study", new { Id = Model.Collection.Study.Id })">STUDY</a>
+            </li>
+        }
+        @if (Model.Collection != default(CollectionStubViewModel) && Model.Collection.Id > 0 && !string.IsNullOrWhiteSpace(Model.Collection.Name))
+        {
+            <li id="tbCollection">
+                <a href="@Url.Action("Index", "Collection", new { Id = Model.Collection.Id })">COLLECTION</a>
+            </li>
+        }
+        <li id="tbRespondent">
+            <a href="#tabRespondent">RESPONDENT</a>
+        </li>
+    </ul>
+    <div id="tabRespondent">
+        <div id="divRespondent">
+            <table style="width: 100%; margin-bottom: 10px" id="tblRespondents" class="detailTables">
+                <tr>
+                    <td style="font-weight:bold; font-size: medium; padding-bottom: 8px;" colspan="2">
+                        @string.Format("{0}: {1}", Model.Type, Model.Description)
+                        <div style="float:right">
+                            <input role="search" title="Search respondent" style="width:130px;padding:0;font-size:small" type="text" name="txtRespondentSearchTerm" id="txtRespondentSearchTerm" />
+                            <button role="button" class="btn" title="Search Respondent" id="respondentSearchBtn">
+                                Search
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-top: 1px solid #c5dbec;"></td>
+                </tr>
+                @if (Model.Collection != default(CollectionStubViewModel) && Model.Collection.Id > 0 && !string.IsNullOrWhiteSpace(Model.Collection.Name))
+                {
+                    <tr>
+                        <td class="bold" style="width: 160px;">@Html.DisplayNameFor(_ => Model.Collection):</td>
+                        <td>
+                            <a href="@Url.Action("Index", "Collection", new { Id = Model.Collection.Id })">@Model.Collection.Name</a>
+                        </td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Type))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Type):</td>
+                        <td>@Model.Type</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Description):</td>
+                        <td>@Model.Description</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Keywords))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Keywords):</td>
+                        <td>@Model.Keywords</td>
+                    </tr>
+                }
+                @if (Model.Mandatory || Model.Voluntary || Model.RequiredForBenefits)
+                {
+                    <tr>
+                        <td class="bold">Response Type:</td>
+                        <td>
+                            @{ var types = new List<string>(); }
+                            @if (Model.Voluntary == true)
+                            {
+                                types.Add(Html.DisplayNameFor(_ => Model.Voluntary));
+                            }
+                            @if (Model.Mandatory == true)
+                            {
+                                types.Add(Html.DisplayNameFor(_ => Model.Mandatory));
+                            }
+                            @if (Model.RequiredForBenefits == true)
+                            {
+                                types.Add(Html.DisplayNameFor(_ => Model.RequiredForBenefits));
+                            }
+                            @Html.Raw(string.Join("; ", types))
+                            @{ types = null; }
+                        </td>
+                    </tr>
+                                }
+                @if (!string.IsNullOrWhiteSpace(Model.RequirementDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.RequirementDescription):</td>
+                        <td><br />@Model.RequirementDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.RequirementReason))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.RequirementReason):</td>
+                        <td><br />@Model.RequirementReason</td>
+                    </tr>
+                }
+                @if (Model.PopulationSizeEstimated.Value > 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PopulationSizeEstimated):</td>
+                        <td>@Model.PopulationSizeEstimated.Value.ToString()</td>
+                    </tr>
+                }
+                @if (Model.PopulationSize.Value > 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PopulationSize):</td>
+                        <td>@Model.PopulationSize.Value.ToString()</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.PopulationSizeDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PopulationSizeDescription):</td>
+                        <td><br />@Model.PopulationSizeDescription</td>
+                    </tr>
+                }
+                @if (Model.ResponseSizeEstimated.Value > 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ResponseSizeEstimated):</td>
+                        <td>@Model.ResponseSizeEstimated.Value.ToString()</td>
+                    </tr>
+                }
+                @if (Model.ResponseSize.Value > 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ResponseSize):</td>
+                        <td>@Model.ResponseSize.Value.ToString()</td>
+                    </tr>
+                }
+                @if (Model.ResponseRateEstimated.Value > 0.0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ResponseRateEstimated):</td>
+                        <td>@Model.ResponseRateEstimated.Value.ToString()</td>
+                    </tr>
+                }
+                @if (Model.ResponseRate.Value > 0.0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ResponseRate):</td>
+                        <td>@Model.ResponseRate.Value.ToString()</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ResponseRateDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ResponseRateDescription):</td>
+                        <td>@Model.ResponseRateDescription</td>
+                    </tr>
+                }
+                @if (Model.Burden.Value > 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Burden):</td>
+                        <td>@Model.Burden.Value.ToString()</td>
+                    </tr>
+                }
+                @if (Model.BurdenPerRespondent.Value > 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.BurdenPerRespondent):</td>
+                        <td>@Model.BurdenPerRespondent.Value.ToString()</td>
+                    </tr>
+                }
+                @if (Model.BurdenPerRespondentSurvey > 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.BurdenPerRespondentSurvey)</td>
+                        <td>@Model.BurdenPerRespondentSurvey.Value.ToString()</td>
+                    </tr>
+                }
+                @if (Model.BurdenPerRespondentAssessment > 0)
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.BurdenPerRespondentAssessment):</td>
+                        <td>@Model.BurdenPerRespondentAssessment.Value.ToString()</td>
+                    </tr>
+                }
+
+                @if (Model.ConsentImplicit || Model.ConsentExplicit || Model.ConsentNotApplicable)
+                {
+                    <tr>
+                        <td class="bold">Consent Type:</td>
+                        <td>
+                            @{ var consentTypes = new List<string>(); }
+                            @if (Model.ConsentExplicit == true)
+                            {
+                                consentTypes.Add(Html.DisplayNameFor(_ => Model.ConsentExplicit));
+                            }
+                            @if (Model.ConsentImplicit == true)
+                            {
+                                consentTypes.Add(Html.DisplayNameFor(_ => Model.ConsentImplicit));
+                            }
+                            @if (Model.ConsentNotApplicable == true)
+                            {
+                                consentTypes.Add(Html.DisplayNameFor(_ => Model.ConsentNotApplicable));
+                            }
+                            @Html.Raw(string.Join("; ", consentTypes))
+                            @{ consentTypes = null; }
+                        </td>
+                    </tr>
+                                }
+                @if (!string.IsNullOrWhiteSpace(Model.ConsentForm))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ConsentForm):</td>
+                        <td>@Model.ConsentForm</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Population))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.Population):</td>
+                        <td>@Model.Population</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.PopulationDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PopulationDescription):</td>
+                        <td>@Model.PopulationDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ResponseType))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ResponseType):</td>
+                        <td>@Model.ResponseType</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ResponseTypeDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ResponseTypeDescription):</td>
+                        <td><br />@Model.ResponseTypeDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ResponseMode))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ResponseMode):</td>
+                        <td>@Model.ResponseMode</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ResponseModeDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ResponseModeDescription):</td>
+                        <td><br />@Model.ResponseModeDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.AdditionalLanguageInstrument))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.AdditionalLanguageInstrument):</td>
+                        <td>@Model.AdditionalLanguageInstrument</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.AdditionalLanguageInterpreter))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.AdditionalLanguageInterpreter):</td>
+                        <td>@Model.AdditionalLanguageInterpreter</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.IncentiveCashValue))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.IncentiveCashValue):</td>
+                        <td>@Model.IncentiveCashValue</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.IncentiveCashDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.IncentiveCashDescription):</td>
+                        <td>@Model.IncentiveCashDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.IncentiveNonCashValue))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.IncentiveNonCashValue):</td>
+                        <td>@Model.IncentiveNonCashValue</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.IncentiveNonCashDescription))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.IncentiveNonCashDescription):</td>
+                        <td>@Model.IncentiveNonCashDescription</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.IncentiveJustification))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.IncentiveJustification):</td>
+                        <td>@Model.IncentiveJustification</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ConfidentialityLaw))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.ConfidentialityLaw):</td>
+                        <td>@Model.ConfidentialityLaw</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.VoluntaryConfidentialityStatementInstrument))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.VoluntaryConfidentialityStatementInstrument):</td>
+                        <td><br />@Model.VoluntaryConfidentialityStatementInstrument</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.VoluntaryConfidentialityStatementContactMaterial))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.VoluntaryConfidentialityStatementContactMaterial):</td>
+                        <td><br /><br />@Model.VoluntaryConfidentialityStatementContactMaterial</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.VoluntaryConfidentialityStatementFaq))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.VoluntaryConfidentialityStatementFaq):</td>
+                        <td><br />@Model.VoluntaryConfidentialityStatementFaq</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.VoluntaryConfidentialityStatementBrochure))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.VoluntaryConfidentialityStatementBrochure):</td>
+                        <td><br />@Model.VoluntaryConfidentialityStatementBrochure</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.FollowUpInformedConsentStatement))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.FollowUpInformedConsentStatement):</td>
+                        <td><br />@Model.FollowUpInformedConsentStatement</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.FollowUpInformedConsentLocation))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.FollowUpInformedConsentLocation):</td>
+                        <td><br />@Model.FollowUpInformedConsentLocation</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.PaperworkReductionActStatement))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PaperworkReductionActStatement):</td>
+                        <td><br />@Model.PaperworkReductionActStatement</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.PaperworkReductionActLocation))
+                {
+                    <tr>
+                        <td class="bold">@Html.DisplayNameFor(_ => Model.PaperworkReductionActLocation):</td>
+                        <td><br />@Model.PaperworkReductionActLocation</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

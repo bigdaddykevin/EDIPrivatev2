@@ -1,0 +1,76 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<FileStubViewModel>
+<div class="containerSearch">
+    <div id="divSearch">
+        <div id="aSearchCriteria">
+            <div id="divSearchSteps">
+                <div class="roundedBox">
+                    <span class="searchStep">Search in FILE with:</span>
+                    <p style="text-align:left; margin-left:30px;">
+                        @if (!string.IsNullOrWhiteSpace(ViewBag.queryItems))
+                        {
+                            @ViewBag.queryItems;
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="divSearchResults">
+            <div class="searchResults">
+                <span style="margin:0 10px 0 10px;float: left;" class="ui-icon ui-icon-triangle-1-e icon orange"></span>
+                @Model.Count() FILE @if (Model.Count() == 1 || Model.Count() == 0)
+                { <text>matches</text> }
+                else
+                { <text>match</text> } your query
+            </div>
+            <div class="containerMainSearchResults">
+                @if (Model.Any())
+                {
+                    <table style="border:1px;">
+                        <tr>
+                            <th>File Name</th>
+                            <th>File Format</th>
+                            <th>Restriction</th>
+                        </tr>
+                        @foreach (var item in Model.OrderBy(f => f.Name))
+                        {
+                            @if (item != default(FileStubViewModel) && item.Id != default(Guid) && !string.IsNullOrWhiteSpace(item.Name))
+                            {
+                                <tr>
+                                    <td style="text-align:center;">
+                                        <a href="@Url.Action("Index", "File", new { id = item.Id })">@item.Name</a>
+                                    </td>
+                                    @if (!string.IsNullOrWhiteSpace(item.Format))
+                                    {
+                                        <td style="text-align:center;">@item.Format</td>
+                                    }
+                                    else
+                                    {
+                                        <td />
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(item.Restriction))
+                                    {
+                                        <td style="text-align:center;">@item.Restriction</td>
+                                    }
+                                    else
+                                    {
+                                        <td />
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                }
+                else
+                {
+                    <p class="emptyResult">Nothing matches your search term.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

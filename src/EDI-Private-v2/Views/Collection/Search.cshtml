@@ -1,0 +1,100 @@
+﻿@using EDIPrivate.ViewModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var queryStr = new List<string>();
+    if (ViewBag.queryItems.Length > 3)
+    {
+        var collectionKeys = new Dictionary<string, string>()
+        {
+            { "name", "Name" },
+            { "parent", "Parent Study Name" },
+            { "type", "Collection Type" },
+            { "cost", "Cost" },
+            { "costyears", "Cost Years" },
+            { "costdescription", "Cost Description" },
+            { "recruitmentstartdateestimated", "Recruitment Estimated Start Date" },
+            { "startdateestimated", "Collection Estimated Start Date" },
+            { "startdate", "Collection Start Date" },
+            { "enddateestimated", "Collection Estimated End Date" },
+            { "enddate", "Collection End Date" },
+            { "datedescription", "Date Description" },
+            { "datacollectionagenttype", "Data Collection Agent Type" },
+            { "datacollectionagentprimary", "Primary Data Collection Agent" },
+            { "datacollectionagentnonprimary", "Non-Primary Data Collection Agent" },
+            { "confidentialitylaw", "Confidentiality Law" },
+            { "voluntaryconfidentialitystatement", "Voluntary & Confidentiality Statement" },
+            { "voluntaryconfidentialitystatementrespondent", "Respondent Voluntary & Confidentiality Statement" },
+            { "experimentdescription", "Experiment Description" },
+            { "experimentresults", "Experiment Results" },
+            { "respondents", "Respondent Names" },
+            { "packages", "Package Titles" }
+        };
+
+        int i = 3;
+        while (i < ViewBag.queryItems.Length)
+        {
+            if (ViewBag.queryItems[i - 1] == "cmp")
+            {
+                queryStr.Add(ViewBag.queryItems[i].ToUpper());
+            }
+            else
+            {
+                queryStr.Add(collectionKeys[ViewBag.queryItems[i - 1]] + " = " + ViewBag.queryItems[i]);
+            }
+
+            i = i + 2;
+        }
+    }
+}
+
+@model IEnumerable<CollectionStubViewModel>
+<div class="containerSearch">
+    <div id="divSearch">
+        <div id="aSearchCriteria">
+            <div id="divSearchSteps">
+                <div class="roundedBox">
+                    <span class="searchStep">Search in COLLECTION with:</span>
+                    <p style="text-align:left; margin-left:30px;">
+                        @if (!string.IsNullOrWhiteSpace(queryStr.FirstOrDefault()))
+                        {
+                            foreach (var item in queryStr)
+                            {
+                                <span style="margin-right:10px;">@item</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="divSearchResults">
+            <div class="searchResults">
+                <span style="margin:0 10px 0 10px;float: left;" class="ui-icon ui-icon-triangle-1-e icon orange"></span>
+                @Model.Count() COLLECTION @if (Model.Count() == 1)
+                { <text>matches</text> }
+                else
+                { <text>match</text> } your query
+            </div>
+            <div class="containerMainSearchResults">
+                @if (Model.Any())
+                {
+                    <ul>
+                        @foreach (var item in Model.OrderBy(c => c.Name))
+                        {
+                            @if (item != default(CollectionStubViewModel) && item.Id != 0 && !string.IsNullOrWhiteSpace(item.Name))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "Collection", new { Id = item.Id })">@item.Name</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="emptyResult">Nothing matches your search term.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
