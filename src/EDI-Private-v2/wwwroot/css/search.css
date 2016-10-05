@@ -1,0 +1,21 @@
+﻿/*Style sheet for advanced search page*/
+
+.search-default-group,.input-group, .control-btn-group{
+    margin-top:14px;
+}
+
+#searchTabs .roundedBox{
+    width:97.5%;
+}
+
+#divSearchSteps .roundedBox {
+    width:97.5%;
+}
+
+#searchTabs .search-dropdown .search-key-dropdown{
+    margin-right:20px;
+}
+
+.num_search .date_search .bool_search {
+    display:inline-block;
+}

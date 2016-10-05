@@ -1,0 +1,644 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #2e6e9e;
+    outline: none;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #e17009;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #e17009;
+}
+
+.noHighlight
+{
+    color: #333;
+}
+
+.noHighlight:hover
+{
+    color: inherit;
+    text-decoration: none;
+}
+
+.tooltip:hover {
+    outline: none;
+    text-decoration: none;
+}
+
+select, input
+{
+    font-family: 'Open Sans', sans-serif !important;
+	font-size: 1em;
+}
+
+#listSearchTips li
+{
+    list-style-type: decimal;
+    padding: 0;
+}
+
+#listSearchOperators li
+{
+    list-style-type: lower-alpha;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    color: #000;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.diWrap {
+	width: 960px;
+	height: auto;
+	display: table;
+	color: #333333;
+	line-height: 1.5em;
+	margin: 0 auto;
+	background: #f5f5f5;
+	padding-bottom: 10px;
+    font-family: 'Open Sans', sans-serif !important;
+	font-size: .75em;
+}
+
+.diBanner {
+	background: url(../images/ed_banner.png) no-repeat;
+	height: 117px;
+	width: 960px;
+	margin-bottom: 20px;
+	margin-top: 0;
+	display: table;
+	text-align: left;
+}
+
+.diBanner h1 {
+    background: url(../images/data_logo.png) no-repeat;
+    width: 434px;
+    position: absolute;
+    height: 36px;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+.diMenu {
+    font-size: 12px;
+    text-transform: uppercase;
+	color: #f9bd01;
+	margin-top: 17px !important;
+	margin-left: 20px;
+	height: auto;
+	width: 960px;
+	display: table;
+	position: absolute;
+}
+
+.diMenu a, .diMenu a:link {
+    display: block;
+    text-decoration: none;
+    color: #2e6e9e;
+    padding: 2px 10px 1px 10px;
+}
+
+.diMenu li a
+{
+	text-align: center;
+	padding-top: 2px;
+}
+
+.diMenu, .diMenu ul {
+    list-style-type:none;
+    padding:0;
+    margin:0;
+    z-index:2;
+}
+
+.diMenu ul {
+    width: auto;
+}
+
+.diMenu li {
+    float:left;
+    position:relative;
+    z-index:210;
+    border-right: 1px solid #f9bd01;
+    height: 22px;
+}
+
+.diMenu li a:hover, .diMenu li:hover a {
+    color: #ffffff !important;
+    background: #f9bd01;
+    height: auto;
+    height: 20px;
+}
+
+.diMenu li.diItemLast {
+border-right: 0px;
+}
+
+/*.diSearch {
+	float: right;
+	width: auto;
+	height: auto;
+    vertical-align: top;
+    padding-right: 10px;
+}*/
+
+.diSearchBox {
+    font-size: 10px;
+    width: 150px;
+    height: 11px;
+}
+
+.diHPOne {
+	width: 380px;
+	height: auto;
+	display: table;
+	text-align: left;
+	margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.welBox {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	background-color: #fff;
+	background: url(../images/grid.png) no-repeat;
+	border: 1px solid #dadfe2;
+	width: 100%;
+	padding: 10px;
+	height: auto;
+	font-family: 'TeXGyreAdventorRegular';
+    font-size: 1em;
+    color: #333333;
+}
+
+.welOne {
+	color: #333333;
+	font-size: 1.4em;
+    /*line-height: .75em;*/
+}
+
+.welTwo {
+	color: #f9bd01;
+	font-size: 1.9em;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.diHPTwo {
+	width:485px;
+	height: auto;
+	display: table;
+	float: right;
+	margin-right: 20px;
+	text-align: left;
+}
+
+.btnBck {
+	background: url(../images/btnBck.png) no-repeat;
+	color: #2e6e9e;
+	width: 74px;
+	height: 26px;
+	border: none;
+}
+
+.roundedBox {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	background: #fff;
+	width: 100%;
+	height: auto;
+	padding: 10px;
+	border: 1px solid #dadfe2;
+	margin-top: 20px;
+	text-align: left;
+}
+
+.diHPTwo div.roundedBox {
+	 margin-top: -10px;
+	 line-height: 16px;
+	 width: 95%;
+	 color: #333;
+}
+
+.wwwText strong {
+    font-family: 'TeXGyreAdventorRegular';
+    color: #f9bd01;
+	font-size: 1.4em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.bnrWrap {
+    width: 485px;
+    height: auto;
+    display: table;
+}
+
+.beta {
+    color: #1d5b85;
+    font-family: Arial Narrow, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 1.2em;
+    float: right;
+    margin-top: 57px;
+    font-weight: lighter;
+}
+
+.icon
+{
+    float:left;
+    padding-right: 2px;
+    vertical-align:text-top;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0 none;
+    width: 100%;
+}
+
+.sortableTable td, th {
+    padding: 5px;
+    border: 0 none;
+}
+
+#tblSeriesDetail td, #tblStudyDetail td, #tblStudyScope td, #tblQuestionnaireDetail td, #tblAccessNotes td, #tblMethodology td {
+    padding-bottom: 5px;
+}
+
+
+/* How to Search */
+.containerHowToSearch
+{
+    margin: 0;
+    padding-right: 10px;
+    height: 475px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* slider */
+
+#container {
+	width:485px;
+	height: auto;
+	margin:0 auto;
+	position:relative;
+	z-index:0;
+	margin-top: -10px;
+}
+
+#example {
+	width:485px;
+	height:310px;
+	position:relative;
+}
+
+#frame {
+	position:absolute;
+	z-index:0;
+	width:640px;
+	height:330px;
+	top:10px;
+	left:-80px;
+}
+
+/*
+	Slideshow
+*/
+
+#slides {
+	position:absolute;
+	top:39px;
+	left:42px;
+	z-index:100;
+	width: 450px;
+}
+
+/*
+	Slides container
+	Important:
+	Set the width of your slides container
+	Set to display none, prevents content flash
+*/
+
+.slides_container {
+	width:400px;
+	height: 200px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+}
+
+.slides_container div.slide {
+	width:400px;
+	height:200px;
+	display:block;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container a {
+	width:400px;
+	height:200px;
+	display:block;
+	text-decoration: none;
+}
+
+.slides_container a img {
+	display:block;border: 0;
+}
+
+/*
+	Next/prev buttons
+*/
+
+#slides .next, #slides .prev {
+	position: absolute;
+	top: 90px;
+	left:-49px;
+    margin-left: 0 !important;
+	margin-top: 0px;
+	width:24px;
+	height:43px;
+	display:block;
+	z-index:601;
+}
+
+#slides a.next img, #slides a.prev img {
+	border: 0;
+}
+
+#slides .next {
+	left:424px;
+}
+
+/*
+	Pagination
+*/
+
+.pagination
+{
+    display: none;
+}
+
+/*
+	Caption
+*/
+
+.caption {
+	z-index:500;
+	position:absolute;
+	left:0;
+	height:auto;
+	padding: 0 10px 2px 2px;
+    background:#7ab7e0;
+    background:rgba(122, 183, 224, 0.9);
+	width:390px;
+	font-size: .9em;
+	color:#000;
+	border-top:1px solid #fff;
+	line-height: 1.4em;
+}
+
+.caption div
+{
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+}
+
+.mainTtl
+{
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 1em;
+   color: #fff;
+}
+
+.seriesName {
+    font-family: 'TeXGyreAdventorRegular';
+	color: #fff;
+	font-size: 1.25em;
+	line-height: 1.3em;
+}
+
+/* Search */
+.containerSearch {
+     padding: 0 25px;
+     min-height: 600px;
+}
+
+.searchType {
+    margin-right: 10px;
+}
+
+#ajaxSearchWait, #ajaxMenuSearchWait, #ajaxDetailWait
+{
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url(../images/ajax_loading.gif) 50% 50% no-repeat;
+}
+
+#divSearchSteps .roundedBox
+{
+    margin-right: 1px;
+}
+
+#divSearchSteps .lastStep
+{
+    margin-right: 0;
+}
+
+#divSearchSteps div
+{
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+    vertical-align: top;
+}
+
+#divSearchSteps p
+{
+    text-align: center;
+}
+
+#divSearchStepOne
+{
+    width: 400px;
+    height: 65px;
+}
+
+#divSearchStepTwo
+{
+    width: 235px;
+    height: 65px;
+}
+
+#divSearchStepThree
+{
+    width: 200px;
+    height: 65px;
+}
+
+.searchStepNum strong
+{
+    font-family: 'TeXGyreAdventorRegular';
+    font-size: 1.25em;
+    color: #f9bd01;
+    margin-right: 3px;
+    font-weight: bold;
+    float: left;
+}
+
+.searchStep
+{
+   font-family: 'TeXGyreAdventorRegular';
+   font-size: 1.25em;
+   color: #333333;
+   font-weight: bold;
+}
+
+.message
+{
+    border: 1px solid #f9bd01;
+    padding: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 275px;
+    text-align: center;
+    margin: 5px auto 0 auto;
+    background: #FFFFFF;
+}
+
+.inline-block div
+{
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+}
+
+.searchResults
+{
+    background-color: #dfeffc;
+    padding: 5px 0 8px 8px;
+    margin: 2px 2px 0 2px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.exportToCSV
+{
+    background:none!important;
+    border:none;
+    padding:0!important;
+    color: #2e6e9e;
+}
+
+#divSearchResults, #divInventoryList
+{
+    border: 1px solid #79b7e7;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+#containerSearchResults
+{
+    margin: 0 2px 2px 0;
+    height: 475px;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+
+#containerMainSearchResults
+{
+    margin: 0 2px 2px 0;
+    min-height: 475px;
+    height: auto;
+}
+
+.studyVarLine
+{
+    padding-top: 5px;
+    border-bottom: 1px dashed #d5d5cb;
+}
+
+.highlight
+{
+    background: yellow; display: inline-block;
+}
+
+.btnExportFileVar
+{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: #2e6e9e;
+    cursor: pointer;
+
+    /*font-size: inherit;
+    font-family: inherit;*/
+}
+
+.enlargeIcon
+{
+    zoom: 120%;
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+}
+
+#tabs {
+    max-width: 910px;
+}
+
+/* Generated by Font Squirrel (http://www.fontsquirrel.com) on January 8, 2012 */
+@font-face {
+    font-family: 'TeXGyreAdventorRegular';
+    src: url('../fonts/texgyreadventor-regular-webfont-webfont.eot');
+    src: url('../fonts/texgyreadventor-regular-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/texgyreadventor-regular-webfont-webfont.woff') format('woff'),
+         url('../fonts/texgyreadventor-regular-webfont-webfont.ttf') format('truetype'),
+         url('../fonts/texgyreadventor-regular-webfont-webfont.svg#TeXGyreAdventorRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
