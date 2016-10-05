@@ -1,0 +1,28 @@
+﻿@using EDIPrivate.ViewModels
+
+@model IEnumerable<ValueViewModel>
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var item in Model.OrderBy(v => v.Option).ThenBy(v => v.Label))
+        {
+            @if (!string.IsNullOrWhiteSpace(item.Option) || !string.IsNullOrWhiteSpace(item.Label))
+            {
+                <li>
+                    @if (!string.IsNullOrWhiteSpace(item.Option) && !string.IsNullOrWhiteSpace(item.Label))
+                    {
+                        <p>[@item.Option] @item.Label</p>
+                    }
+                    else if (string.IsNullOrWhiteSpace(item.Option))
+                    {
+                        <p>[null] @item.Label</p>
+                    }
+                    else
+                    {
+                        <p>[@item.Option]</p>
+                    }
+                </li>
+            }
+        }
+    </ul>
+}
